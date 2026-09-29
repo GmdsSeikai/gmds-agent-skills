@@ -15,4 +15,6 @@ Copy the desired skill folder to each client that will use it:
 - Codex: `$CODEX_HOME/skills/` (or `~/.codex/skills/` if `CODEX_HOME` is unset).
 - Claude Code: `~/.claude/skills/`.
 
-For `agent-handoff`, invoke `$agent-handoff start <task>` in Codex. Give the resulting task-file path to Mimo and invoke `/agent-handoff execute <absolute-task.md-path>` in Claude Code. Transfer the path back to Codex for review. The skill does not start the other client or include model credentials.
+## Usage
+
+For `agent-handoff`, invoke `$agent-handoff start <task description>` in Codex. A successful `start` delivers a local task file and the exact next invocation — the task itself is not sent anywhere. Unlike Orca, which delivers tasks to agents directly, the receiving client must be opened by the user with that path: `/agent-handoff execute <absolute-task.md-path>` in Claude Code. Transfer the path back to Codex for `$agent-handoff review <absolute-task.md-path>`, or `$agent-handoff revise <absolute-task.md-path>` when the executor returns a plan revision. The skill does not start the other client or include model credentials.
