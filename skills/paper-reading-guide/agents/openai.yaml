@@ -1,0 +1,7 @@
+interface:
+  display_name: "论文陪读与复述"
+  short_description: "单篇论文陪读与复述，按问题灵活讲解、核对原文，明确要求时导出"
+  default_prompt: "使用 $paper-reading-guide 阅读这篇论文，先让我选择陪读模式或复述模式。"
+
+policy:
+  allow_implicit_invocation: true
