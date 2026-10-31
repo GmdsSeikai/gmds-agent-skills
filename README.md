@@ -7,7 +7,7 @@ Reusable agent skills. Each skill lives in `skills/<name>/` and has its own `SKI
 | Skill | Purpose |
 | --- | --- |
 | [agent-handoff](skills/agent-handoff/SKILL.md) | Manually hand a Git repository task between a decision/review agent and an execution/repair agent. Defaults to Codex and Mimo through Claude Code CLI. |
-| [paper-reading-guide](skills/paper-reading-guide/SKILL.md) | Read a single computing paper with flexible explanations or retelling feedback, check claims against the source, and export notes only when requested. |
+| [paper-reading-guide](skills/paper-reading-guide/README.md) | Understand a single computing paper through flexible guided reading or retelling feedback, concrete examples, and proactive diagrams. Check claims against the source and export notes only when requested. |
 
 ## Install
 
