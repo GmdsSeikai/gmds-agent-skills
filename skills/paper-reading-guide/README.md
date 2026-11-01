@@ -1,62 +1,64 @@
-# paper-reading-guide：交互式论文陪读与复述
+# paper-reading-guide: Interactive Paper Reading and Retelling
 
-面向深度学习、计算机网络和边云卸载等方向，帮助读者逐步理解单篇论文。通过具体例子、按需补基础和适时配图，串起论文的问题、方法与实验，并依据原文核对理解。
+Understand a single computing paper in areas such as deep learning, networking, and edge-cloud offloading. Concrete examples, prerequisites taught as needed, and timely diagrams connect the problem, method, and experiments, while source checks keep explanations grounded.
 
-基于 [fuxiao13/paper-reading-guide](https://github.com/fuxiao13/paper-reading-guide) 的主版，沿用 MIT 许可，保留领域速查表和两个 PDF 辅助脚本。
+Customized from [fuxiao13/paper-reading-guide](https://github.com/fuxiao13/paper-reading-guide) under the MIT license, retaining its domain references and two PDF helpers.
 
-## 主要功能
+The skill's instructions are in English. User-facing teaching follows the user's language and defaults to Chinese. Chinese requests such as "陪读模式" and "复述模式" remain supported.
 
-- **灵活陪读**：围绕当前问题展开，可追问、跳转、回退或跳过理解检查；基础不足时逐块补充前置知识。
-- **主动辅助理解**：用具体例子解释概念，需要时手算公式；算法流程、模块关系或复杂因果链适合图示时，主动配简洁教学图。优先使用 Mermaid，无法渲染时改用文本箭头；注明原文依据与简化条件。
-- **复述反馈**：读者先讲，助手对照原文指出理解正确、需要修正和仍待核实的部分。按需区分已独立复述、提示后复述与尚未检验，不把听过或跳过当作掌握。
-- **原文核对**：重要结论与纠错定位原文，区分作者主张、实验支持、教学示例和助手推断；区分未找到、无法核实与已检查但未说明。生成页面图片后还须实际查看，才可判断图中趋势。
-- **按需保存**：默认只聊天，“总结／整理一下”在对话里回应；明确要求后才按指定范围、位置和长度保存或导出，避免覆盖。只有明确要求写 Obsidian 才触碰其库；阅读状态留在当前对话，不擅自写长期记忆。
+## Features
 
-## 入口
+- **Flexible guided reading:** Follow the current question. Ask, jump, backtrack, or skip understanding checks. Build missing prerequisites in small pieces.
+- **Proactive teaching aids:** Explain concepts with concrete examples and work through equations when useful. Add a small teaching diagram when an algorithm, module relationship, or complex causal chain benefits from it. Prefer Mermaid, falling back to text arrows when rendering is unavailable; identify source locations and simplified conditions.
+- **Retelling feedback:** The user explains first; the assistant checks against the paper and identifies correct, mistaken, and unresolved points. Distinguish independent retelling, retelling after hints, and material not yet checked; listening or skipping is not evidence of mastery.
+- **Source checks:** Locate important claims and corrections. Distinguish author claims, experimental support, teaching examples, and assistant inference, as well as information not yet found, currently unverifiable, or checked but not stated. Actually view rendered pages before interpreting plotted trends.
+- **Saving only on request:** Summarize or organize in chat by default. Save or export only when explicitly requested, following the specified scope, location, and length without overwriting. Write to Obsidian only when explicitly requested. Keep reading state in the conversation rather than saving long-term memory without a request.
 
-- `$paper-reading-guide 读这篇论文：<路径或链接>`：先选择模式。
-- `$paper-reading-guide 陪读模式，读这篇论文：<路径或链接>`：围绕一个概念或因果链讲解，按需补基础和深入，可跳转、回退或跳过理解检查。
-- `$paper-reading-guide 复述模式，我先讲这篇论文：<路径或链接>`：用户先复述，助手对照原文反馈，按需追问。
-- 有论文上下文的具体公式、算法或实验问题：直接回答，不要求先选模式，也不重置同篇阅读进度。
-- 对话中说“切到陪读模式”或“切到复述模式”：保留进度并切换。
+## Entry Points
 
-已提供论文时，直接说“陪读模式”即可。新论文默认第一轮用具体场景讲清问题、困难和核心思路，再逐块推进，按需补基础、举例和配图；有具体问题、选读范围或同篇进度时直接沿用，无需重复交代讲解偏好。
+- `$paper-reading-guide Read this paper: <path or link>`: choose a mode first.
+- `$paper-reading-guide Guided reading mode: <path or link>`: explain one concept or causal chain at a time, add background as needed, and allow jumping, backtracking, or skipping checks.
+- `$paper-reading-guide Retelling mode; I will explain first: <path or link>`: the user retells, then the assistant checks the source and follows up as needed.
+- A specific equation, algorithm, or experiment question with paper context: answer directly without requiring a mode choice or resetting progress.
+- Ask to switch to guided reading or retelling during the conversation; retain progress.
 
-## 对话示例
+Once the paper is available, saying "guided reading mode" or "陪读模式" is enough. For a new paper, the first turn defaults to a concrete scenario explaining the problem, difficulty, and core idea. Continue in small pieces with prerequisites, examples, and diagrams as needed. Specific questions, selected scope, and existing progress take precedence; teaching preferences need not be repeated.
 
-```text
-$paper-reading-guide 陪读模式，读这篇论文：<PDF 路径>
-
-这里还是没懂，换个例子，并画图说明模块之间的关系。
-
-切到复述模式，只检查刚才的方法部分，我先讲。
-```
-
-进入模式后直接用普通语言继续提问即可，无需每轮重复调用 skill。也可以直接问具体公式、算法或实验问题。
-
-## 文件
-
-- `SKILL.md`：入口与共同规则。
-- `references/three-pass-reading.md`：可跳转的阅读深度、补基础与教学建议。
-- `references/retelling-mode.md`：复述流程。
-- `references/evidence-rules.md`：证据、未知状态与图表核对。
-- `references/summary-template.md`：小结模板。
-- `references/domains/`：上游领域速查表。
-- `scripts/`：上游 PDF 结构提取与页渲染；可选依赖见 `requirements.txt`。
-- `LICENSE`：上游 MIT 许可与署名。
-
-本目录包含定制版的阅读流程、领域速查表与 PDF 工具。合并上游更新时需保留定制的交互与写入边界。
-
-## PDF 工具环境
-
-仅聊天阅读已提供的正文不需要 Python。处理本地 PDF 时，在独立 Python 环境中安装 `requirements.txt`，使用能导入 PyMuPDF 的解释器；脚本路径相对本 skill 目录解析。
+## Conversation Example
 
 ```text
-python -m pip install -r <skill目录>/requirements.txt
-python <skill目录>/scripts/extract_outline.py <论文路径>
-python <skill目录>/scripts/render_page.py <论文路径> 2,4 --out <任务输出目录>
+$paper-reading-guide 陪读模式，读这篇论文：<PDF path>
+
+I still do not understand this part. Use another example and diagram the module relationships.
+
+Switch to retelling mode, only for the method we just covered. I will explain first.
 ```
 
-上述 `python` 应替换为所选环境的解释器路径；含空格的路径按所用 shell 引用，Windows 可加 `-X utf8` 避免终端编码问题。提取只用于定位；判断公式或图表时还需查看原始页面。
+The Chinese opening above requests guided reading; continue naturally in the language you prefer. There is no need to invoke the skill again on every turn. You may ask about a particular equation, algorithm, or experiment directly.
 
-可选：在安装后的 skill 目录创建 `local-runtime.md`，记录本机解释器和调用方式。主入口会在运行 PDF 脚本前读取该文件；未配置时选择能导入 PyMuPDF 的 Python。此文件包含机器相关配置，已由本目录 `.gitignore` 排除，不随仓库发布。
+## Files
+
+- `SKILL.md`: entry routing and shared rules.
+- `references/three-pass-reading.md`: flexible reading depths, prerequisites, and teaching guidance.
+- `references/retelling-mode.md`: retelling workflow.
+- `references/evidence-rules.md`: evidence, unknown-information states, and visual checks.
+- `references/summary-template.md`: optional summary template.
+- `references/domains/`: domain reference sheets inherited from upstream.
+- `scripts/`: PDF outline extraction and page rendering; optional dependency in `requirements.txt`.
+- `LICENSE`: upstream MIT license and attribution.
+
+This directory contains the customized reading workflow, domain references, and PDF tools. Preserve its interaction and write boundaries when reviewing upstream updates.
+
+## PDF Helper Environment
+
+Reading text already supplied in chat does not require Python. For local PDFs, install `requirements.txt` in an isolated Python environment and use an interpreter that can import PyMuPDF. Resolve helper paths relative to the skill directory.
+
+```text
+python -m pip install -r <skill-dir>/requirements.txt
+python <skill-dir>/scripts/extract_outline.py <paper-path>
+python <skill-dir>/scripts/render_page.py <paper-path> 2,4 --out <task-output-dir>
+```
+
+Replace `python` with the selected interpreter's path. Quote paths containing spaces according to the shell; on Windows, `-X utf8` can avoid terminal encoding problems. Extraction aids navigation only: inspect original page images before judging equations or figures.
+
+Optionally create `local-runtime.md` in the installed skill directory to record the machine's interpreter and invocation instructions. The entrypoint reads it before running PDF helpers; without it, select a Python that can import PyMuPDF. The repository's skill-local `.gitignore` excludes this machine-specific file from publication.

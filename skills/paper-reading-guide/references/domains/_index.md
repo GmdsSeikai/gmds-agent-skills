@@ -1,14 +1,16 @@
-# 领域速查表索引(运行时:选表)
+# Domain Reference Index
 
-按题名和摘要中的方向信号选择**一张或多张**匹配的速查表作辅助，论文定义与假设以原文为准。通用 DL 表仅用于确实属于深度学习、但无专用表的论文；无匹配表的网络、边云卸载等论文按原文分析，不强套通用 DL 表，也不因出现 DNN 就假定本文研究训练或损失函数。方向判不准时先确认研究问题。
-(新增方向 / 速查表的统一结构与贡献流程见仓库根目录 `CONTRIBUTING.md`。)
+Choose one or more matching sheets from the title and abstract as supporting context. The paper's own definitions and assumptions take precedence. Use the general DL sheet only for a deep-learning paper without a more specific match. Analyze networking or edge-cloud offloading papers without a matching sheet from their own text; do not force a DL sheet onto them or assume training and loss functions are the subject just because DNNs appear. If the direction is unclear, first identify the research question.
 
-## 选表规则(看标题/摘要里的信号词)
-| 信号词 | 选这张表 |
+The upstream maintenance note refers to `CONTRIBUTING.md` for adding domains and defining sheet structure; that maintenance document is not bundled with this skill.
+
+## Selection Signals in the Title and Abstract
+
+| Signals | Sheet |
 |---|---|
-| 强化学习 / RL / policy / reward / MPC / 控制 / 系统辨识 / 模仿学习 / sim-to-real / 机器人控制 / Koopman / 稳定性 | `control-dl.md` |
-| 视听 / audio-visual / 声源(视觉)定位 / 视听分离 / 跨模态 / sounding object / lip / AV fusion | `audio-visual.md` |
-| 麦克风阵列 / 波束形成 / beamforming / DAMAS / CLEAN-SC / 声成像 / 声源定位(纯音频阵列) | `acoustic-imaging.md` |
-| 以上都不沾,但是深度学习论文 | `general-dl.md` |
+| Reinforcement learning / RL / policy / reward / MPC / control / system identification / imitation learning / sim-to-real / robot control / Koopman / stability | `control-dl.md` |
+| Audio-visual / visual sound-source localization / audio-visual separation / cross-modal / sounding object / lip / AV fusion | `audio-visual.md` |
+| Microphone array / beamforming / DAMAS / CLEAN-SC / acoustic imaging / sound-source localization with an audio-only array | `acoustic-imaging.md` |
+| A deep-learning paper without any of the above signals | `general-dl.md` |
 
-可同时选两张:如"用视听信息做机器人控制" → `control-dl.md` + `audio-visual.md`。
+Combine sheets when appropriate: audio-visual robot control can use both `control-dl.md` and `audio-visual.md`.

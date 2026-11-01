@@ -1,57 +1,58 @@
-# 精读与复述小结模板
+# Reading and Retelling Summary Template
 
-明确请求详细总结或导出时按需使用，字段可随指定范围和长度裁剪，不适用字段省略。普通“总结／整理一下”只在聊天中简短回应；写入边界遵循主入口，整理不等于保存，导出不等于允许覆盖。没有明确保存要求时不创建文件。
-语言跟随用户；重要结论带原文定位与性质。相关但未查明的内容写“待查”并说明原因，不用猜测填满模板，不替用户生成研究想法。
+Use selectively for an explicitly requested detailed summary or export. Trim fields to the requested scope and length; omit inapplicable fields. An ordinary request to summarize or organize calls for a brief chat response. Follow the entrypoint's write boundaries: organizing is not saving, and export permission is not overwrite permission. Do not create a file without an explicit save request.
+
+Write in the user's language. Include source locations and evidence type for important claims. Mark relevant unresolved information as open and explain why; do not guess to fill the template or invent the user's research ideas.
 
 ```markdown
-# [作者 年份] 标题
+# [Author Year] Title
 
-## 阅读范围与来源
-- 论文版本/来源：
-- 可读材料：全文 / 摘要 / 部分章节；附录/补充材料是否可读：
-- 本次模式与覆盖范围：
-- 页码约定：PDF 页序（从 1 起）；必要时另列印刷页码。
+## Scope and Sources
+- Paper version and source:
+- Available material: full text / abstract / selected sections; appendix or supplement availability:
+- Mode and scope covered:
+- Page convention: PDF page numbers from 1; printed page numbers separately if needed.
 
-## 三句话总结
+## Three-Sentence Summary
 1.
 2.
 3.
-> 关键结论标注〔作者主张 / 实验支持 / 助手推断〕和原文位置。
+> Mark key conclusions as author claims, experimental support, or assistant inference, with source locations.
 
-## 核心创新点（1–3 条）
-- 创新主张 → 具体技术 → 支持证据与原文定位；证据不足时保留判断。
+## Core Contributions (1-3)
+- Novelty claim -> concrete technique -> supporting evidence and location; withhold judgment if unsupported.
 
-## 方法
-- 输入/输出：
-- 核心模块/架构：
-- 训练目标/损失：
-- 关键假设与适用条件：
-> 对应章节/公式/图号：
+## Method
+- Inputs and outputs:
+- Core modules or architecture:
+- Training objective or loss, if applicable:
+- Important assumptions and applicability conditions:
+> Relevant sections, equations, or figures:
 
-## 实验
-| 结果/数字 | 数据集与设置 | 指标及方向 | 基线/比较对象 | 证据性质与原文位置 |
+## Experiments
+| Result or number | Dataset and settings | Metric and direction | Baseline or comparator | Evidence type and source location |
 |---|---|---|---|---|
 
-- 数字口径：绝对值 / 百分点 / 相对变化；估读值注明“约”。
-- 公平性、随机种子、误差带与消融：有证据才判断，未知列待查。
+- Numerical convention: absolute value / percentage points / relative change; mark visual estimates as approximate.
+- Fairness, random seeds, uncertainty bands, and ablations: judge only with evidence; leave unknowns open.
 
-## 方向附加字段
-> 有匹配领域表且与本次范围有关时选用；没有则省略。
+## Domain-Specific Fields
+> Select from a matching domain sheet only when relevant to this scope; otherwise omit.
 
-## 局限与对课题的价值
-- 作者明确承认的局限（原文定位）：
-- 助手推断的局限/可借鉴点（证据与适用条件）：
-- 用户自己的想法（只记录用户实际表达；未表达则留待填写）：
+## Limitations and Research Relevance
+- Author-stated limitations, with source locations:
+- Assistant-inferred limitations or transferable ideas, with evidence and conditions:
+- User's own ideas: record only what the user actually expressed; otherwise leave for them to fill.
 
-## 理解检验
-| 范围/要点 | 状态：已独立复述 / 提示后复述 / 尚未检验 | 实际表现与原文定位 |
+## Understanding Checks
+| Scope or point | Independently retold / retold after hints / not yet checked | Actual performance and source location |
 |---|---|---|
 
-- 已纠正的误解：用户原表述 → 修正内容与证据。
-- 仍需练习：
+- Corrected misunderstandings: user's actual statement -> correction and evidence.
+- Further practice:
 
-## 疑问与待查
-- 问题 / 尚未找到、当前无法核实或已检查相关内容但未说明 / 已查范围 / 下一步。
+## Questions and Open Items
+- Question / not yet located, currently unverifiable, or checked but not stated / scope searched / next step.
 ```
 
-核心创新必须对应具体技术及证据。完成阅读不等于通过理解检验，只有检查过的范围可以记录为已复述。
+Tie contributions to concrete techniques and evidence. Completing reading is not passing an understanding check. Record only the scope actually checked as retold.

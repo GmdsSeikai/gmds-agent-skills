@@ -1,36 +1,36 @@
-# 阅读深度与教学建议
+# Reading Depth and Teaching Guidance
 
-借用 Keshav 三遍法的分层思路，将它作为可选阅读深度。下面的陪读建议是教学调整，不是原方法的逐字定义。可以直接进入公式、回到背景、跳过某块或结束，不要求依次完成，也不以用时判断是否读懂。
+Use the layered idea of Keshav's three-pass approach as optional reading depths. The teaching guidance below adapts that idea; it is not a verbatim definition of the original method. The user may jump to an equation, return to background, skip a topic, or stop. Do not require sequential completion or use elapsed time as evidence of understanding.
 
-## 搭起问题框架
+## Frame the Problem
 
-新论文首次进入陪读且用户未指定问题或选读范围时，默认先搭问题框架，不预设用户已经熟悉本文背景。从标题、摘要、引言贡献、节标题、结论和相关图注中定位主线；第一轮先用一个具体场景说明作者要解决什么、难在哪里、核心思路是什么，再对应原文依据。只讲足够开始讨论的内容，长度随问题调整，细节留到后续按当前问题展开。
+For the first guided-reading turn of a new paper, with no specific question or selected scope, first build a problem framework without assuming prior familiarity. Locate the main thread through the title, abstract, introduction contributions, headings, conclusion, and relevant captions. Use a concrete scenario to explain what the authors want to solve, why it is difficult, and the core idea; then connect it to source locations. Give enough to start the discussion, varying length with the question. Develop details later as they become relevant.
 
-后续围绕一个概念或一小段因果关系推进，遇到必要基础就结合当前问题补充，适时主动举例或配图，并对应回原文。无需用户每次重新交代这套讲解偏好；有明确问题或选读范围就从该处开始，同篇已有进度直接延续。
+Continue one concept or short causal chain at a time, adding necessary background in context. Proactively use examples or diagrams when helpful and connect them back to the paper. The user need not repeat these teaching preferences. An explicit question or selected scope takes priority; continue existing same-paper progress directly.
 
-可借“五个 C”检查是否需要补线索：论文类型（Category）、背景（Context）、假设是否合理（Correctness）、贡献（Contributions）、表达是否清楚（Clarity）。它们供助手选用，不要求用户逐项作答；初看假设合理也不等于已验证结论。
+Use the five Cs as optional cues for missing context: Category, Context, Correctness of assumptions, Contributions, and Clarity. They guide the assistant's selection of questions rather than a required user questionnaire. Plausible-looking assumptions are not a verified result.
 
-## 串起概念与因果关系
+## Connect Concepts and Causes
 
-通常围绕一个概念或一小段逻辑展开：这一步解决什么、和前面有什么关系、为什么需要下一步。按内容自然衔接，不为每轮强加小标题。用户要求完整解释时可展开，不把整节当固定步长。
+Usually explain one concept or short stretch of reasoning: what this step solves, how it connects to the previous step, and why the next step is needed. Connect naturally without imposing headings on every turn. Expand for a full explanation when requested; a whole section is not a fixed unit of progress.
 
-先用具体例子建立直觉，再对应论文的术语、符号与条件。哪里卡住就补相关基础；整篇都吃力时，先梳理少量关键前置知识，逐块补充后返回论文。不预设背景已掌握，也不反复从零讲已经掌握的内容。
+Build intuition with a concrete example before mapping it to the paper's terms, symbols, and conditions. Add the prerequisites relevant to the current difficulty. If the whole paper feels inaccessible, outline a few essential prerequisites, teach them in small pieces, and return to the paper. Neither assume the background is mastered nor repeatedly reteach what is already understood.
 
-用户说“没懂”时，换表达、换例子或缩小步骤；连续两次没懂时，实际改变讲法，不只是重复术语。不清楚卡点时才问一个简短问题，无需每次正式分类诊断。
+When the user says "I don't understand" ("没懂"), change the wording, example, or step size. After two consecutive such responses, materially change the explanation rather than repeating terminology. Ask one short question only when the sticking point is unclear; a formal diagnosis is not required each time.
 
-可在合适时邀请用户复述、预测下一步或解释一个选择；用户要直接听解释、跳过或继续时，按主入口的可选检查规则推进。
+When useful, invite a retelling, a prediction of the next step, or an explanation of a choice. Honor requests to listen directly, skip, or continue under the entrypoint's optional-check rules.
 
-## 主动图示
+## Proactive Diagrams
 
-- 算法步骤、模块连接与数据流、复杂因果链用图更清楚时，主动配一张只覆盖当前问题的小图；围绕输入、关键步骤、必要分支和输出组织。简单概念用文字或算例即可，不为每轮强行加图；用户要求只讲文字时遵从。
-- 优先在聊天中用简洁 Mermaid 流程图表达；当前环境无法渲染时改用文本箭头图，并配简短解释。文件保存遵循主入口的明确请求边界。
-- 标明这是“教学示意图”，与作者原图区分；将关键节点和关系对应到已读章节、公式或算法位置。简化掉的条件、助手补充的解释或尚未确认的关系适时注明，不补造论文未支持的步骤、分支或因果关系。
+- When an algorithm, module connection, data flow, or complex causal chain is clearer as a picture, proactively add a small diagram limited to the current question. Organize it around inputs, key steps, necessary branches, and outputs. Use prose or an example for simple concepts; do not force a diagram into every turn. Honor a text-only request.
+- Prefer a concise Mermaid flowchart in chat. If the environment cannot render it, use a text-and-arrow diagram with a short explanation. Follow the entrypoint's explicit-request boundary for saving files.
+- Label it as a teaching schematic in the user's language and distinguish it from an author-provided figure. Map important nodes and relationships to the sections, equations, or algorithm locations actually read. Disclose simplified conditions, assistant-added explanations, and unconfirmed relationships where relevant. Do not invent unsupported steps, branches, or causal links.
 
-## 按问题深入
+## Go Deeper as Needed
 
-- **公式：**先讲含义、作用和影响理解的关键条件；符号、单位、维度、取值范围、推导或边界情况在相关或被追问时展开，需要时给最小手算例子。补充推导与解析异常按证据规则处理。
-- **算法：**围绕当前问题讲输入输出与关键步骤；状态、停止条件、复杂度及保证在相关时展开，不机械列全套检查项。
-- **实验：**围绕要判断的主张核对指标、基线与比较条件，说明实验支持到哪里、哪些推广仍待验证；不为每篇论文填满固定表格。
-- **证明或复现：**需要时沿作者假设重建推理、检查证明或实验设计。能跟随讲解、算通玩具例子或运行程序，不等于独立掌握、完成一般证明或复现论文。
+- **Equations:** Start with meaning, purpose, and conditions that affect understanding. Expand symbols, units, dimensions, ranges, derivations, or boundary cases when relevant or requested; use a minimal worked example when helpful. Follow the evidence rules for supplemental derivations and extraction errors.
+- **Algorithms:** Explain inputs, outputs, and key steps around the current question. Expand state, stopping conditions, complexity, and guarantees when relevant rather than listing every check mechanically.
+- **Experiments:** Check metrics, baselines, and comparison conditions for the particular claim being assessed. State what the results support and what generalizations remain unverified. Do not fill a fixed table for every paper.
+- **Proofs or reproduction:** When needed, rebuild reasoning from the authors' assumptions and examine proofs or experiment design. Following an explanation, solving a toy example, or running a program does not establish independent mastery, a general proof, or reproduction of the paper.
 
-深入遇到缺失前提时可以退回补基础，再回到原问题；复述模式的先讲后核对流程见主入口指定的复述参考。
+When a missing prerequisite blocks deeper reading, return to that prerequisite and then resume the original question. Retelling follows the user-first workflow linked from the entrypoint.

@@ -1,29 +1,35 @@
-# 精读提问清单 —— 通用骨架
+# Close-Reading Questions: General Framework
 
-这张**领域无关**的骨架供助手按当前问题选用，不要求每节逐项核对、输出或让用户作答。尚未定位的内容先记为待查，不能直接认定为论文的模糊点或局限；核实后再讨论是否构成研究切入点。有匹配领域表时，可参考其末尾的“该方向追问项”。
+Select from this domain-independent framework for the current question. Do not require every item to be checked, displayed, or answered by the user for each section. Keep unlocated information open rather than declaring ambiguity or a limitation; verify it before treating it as a research opportunity. Use the domain-specific questions in a matching sheet when applicable.
 
-## 1. 问题与动机
-- 到底要解决什么问题?现有方法差在哪(作者明确指出的 gap)?
-- 为什么这个问题重要 / 现在才能做?
+## 1. Problem and Motivation
 
-## 2. 方法
-- 核心做法一句话是什么?相对前人**新在哪**(1–3 条,具体可证伪)?
-- 关键模块 / 公式 / 设计选择,动机是什么、替代了什么旧做法?
-- 是新方法、新训练目标、新数据/任务,还是新分析?(别被包装词迷惑)
+- What problem is being solved, and what gap in existing approaches do the authors identify?
+- Why does it matter, or why is it newly feasible?
 
-## 3. 数据与实验
-- 用什么数据(规模、来源、是否公开)?仿真还是真实?
-- 跟哪些基线比?是否同等设置下公平比较?
-- 用什么指标?消融实验拆了哪些组件、各掉多少分?
+## 2. Method
 
-## 4. 结果可信度
-- 提升来自方法本身,还是更大模型/更多数据/更多算力?
-- 有显著性 / 多随机种子 / 方差报告吗?
-- 有没有失败案例、负面结果、诚实的局限讨论?
+- What is the core idea in one sentence? What is new relative to prior work, expressed as one to three concrete, falsifiable points?
+- Why were key modules, equations, or design choices introduced, and what do they replace?
+- Is the contribution a method, training objective, dataset or task, or analysis? Look past promotional wording.
 
-## 5. 泛化与代价
-- 分布外 / 跨场景 / 跨数据集表现?
-- 计算成本、训练/推理开销、可复现性(代码与数据可得吗)?
+## 3. Data and Experiments
 
-## 用法
-需要深入某个主张时，选相关问题核对正文、附录和可用的补充材料，记录已查范围。只有证据充分时才列为局限，否则保留为待查；不适用的问题直接略过。
+- What data are used: size, origin, availability, simulated or real?
+- Which baselines are compared, and are comparison conditions equivalent and fair?
+- Which metrics are used? Which components are ablated, and how much does each change the result?
+
+## 4. Credibility of Results
+
+- Does the gain come from the method, a larger model, more data, or more compute?
+- Are significance, multiple random seeds, or variance reported?
+- Are failure cases, negative results, and limitations discussed candidly?
+
+## 5. Generalization and Cost
+
+- What happens out of distribution, across scenarios, or across datasets?
+- What are the computational cost, training or inference overhead, and reproduction requirements, including code and data availability?
+
+## Use
+
+When a claim needs closer examination, select the relevant questions and check the body, appendices, and available supplements. Record the scope searched. Identify a limitation only when supported by sufficient evidence; otherwise leave it open. Skip inapplicable questions.

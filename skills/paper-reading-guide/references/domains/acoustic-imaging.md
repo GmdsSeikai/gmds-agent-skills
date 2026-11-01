@@ -1,67 +1,62 @@
-# 领域速查 —— 声学成像 / 麦克风阵列声源定位 / 深度学习
+# Domain Reference: Acoustic Imaging, Microphone Arrays, and Deep Learning
 
-讲解论文里的方法、基线、术语时先对照这里,避免讲错。这是"够用"的直觉版,
-不是严格定义;遇到与论文表述冲突,以论文为准。
+Consult this sheet when explaining methods, baselines, and terminology. It offers working intuition rather than rigorous definitions; the paper takes precedence when its account differs.
 
-## 基础链路
-麦克风阵列采多通道信号 → 求**互谱矩阵 CSM**(各通道两两互谱)→
-**波束形成**扫描空间各点 → 得到声源分布图(source map / 波束图)。
+## Basic Pipeline
 
-## 常规波束形成(CB / DAS, conventional beamforming)
-最朴素:对每个扫描点用导向矢量加权求和。问题:**主瓣宽(分辨率低)、旁瓣高
-(有"鬼源")**,低频尤其糟。后续方法多是为了修这两个毛病。
+Microphone array captures multichannel signals -> compute the cross-spectral matrix (CSM) from channel-pair cross spectra -> beamforming scans spatial points -> produce a source map or beamforming map.
 
-## 点扩散函数 PSF(point spread function)
-阵列对一个理想点源的响应图样。**PSF 随频率剧烈变化**,是分辨率受限和旁瓣的根源。
-反卷积类方法的核心就是"从脏图里把 PSF 去掉"。
+## Conventional Beamforming (CB / DAS)
 
-## 反卷积 / 去旁瓣三大经典基线
-- **DAMAS**(Brooks & Humphreys, 2006):迭代求解,把波束图反卷积回真实源分布。
-  物理清晰但慢、对建模假设敏感。很多 DL 工作把它当对标对象或拿来"展开"成网络。
-- **CLEAN-SC**(Sijtsma, 2007):基于"空间相干性"迭代扣掉与峰值源相干的部分来去旁瓣。
-  特点:**能提取绝对声功率**。工业级常用基线,尤其多源场景。
-- **Functional beamforming**(Dougherty, 2014):把 CSM 取矩阵幂(ν 次),
-  **显著压低旁瓣、提升动态范围**,但分辨率提升有限。常用作 DL 的低频"底图"输入。
+For each scan point, form a steering-vector-weighted sum. Wide main lobes limit resolution and high side lobes create apparent ghost sources, especially at low frequencies. Many subsequent methods address these two issues.
 
-## 关键名词
-- **CSM**:cross-spectral matrix,互谱矩阵,阵列数据的二阶统计,常作输入。
-- **网格法 vs 无网格(grid-free)**:网格法在预设网格上出热力图,分辨率受网格限制;
-  无网格直接回归源坐标(如用 ResNet),可超过网格分辨率。
-- **瑞利限(Rayleigh limit)**:两源可分辨的最小间距,衡量"超分辨"能力的基准。
-- **sim-to-real gap**:仿真训练的模型搬到真实阵列上掉点的现象;常用加噪预训练 +
-  少量真实数据微调 / 域适应来缓解。
+## Point Spread Function (PSF)
 
-## 深度学习范式(这批论文常见的几类)
-1. **去卷积型**:CNN / U-Net / DenseNet 把"脏"波束图映射成"干净"源图
-   (输入波束图 → 输出反卷积图)。
-2. **模型驱动展开**:把 DAMAS / FISTA 等迭代算法"展开"成可学习网络
-   (如 DAMAS-FISTA-Net),兼顾物理可解释与速度,对标"物理约束"。
-3. **直接回归(grid-free)**:网络直接输出源的位置坐标 p、有时连声强 s 一起回归。
-4. **训练策略**:仿真生成数据 + 加噪;采样策略(拉丁超立方等)影响数据效率;
-   两步法 = 仿真预训练 + 真实微调。
+The array's response pattern to an ideal point source. The PSF varies strongly with frequency and underlies resolution limits and side lobes. Deconvolution methods aim to remove its effect from the dirty map.
 
-## 常用评价指标
-- **空间分辨率 / 是否突破瑞利限**
-- **定位误差**(预测位置 vs 真实位置)
-- **声强 / 声功率误差**(量化得准不准)
-- **计算耗时 / 实时性**
-- **多源场景下的源数估计与分离准确度**
+## Three Classical Deconvolution or Side-Lobe Baselines
 
-## 讲解口径建议
-- 看到"反卷积""去旁瓣""提升分辨率",先想它在修 CB 的哪个毛病(主瓣宽 or 旁瓣高)。
-- 看到某 DL 方法,先归类是 上面 1/2/3 哪一种,再谈它相对前人的新意。
-- 看到频段信息,留意是否针对低频——低频分辨率是这一领域反复出现的硬骨头。
+- **DAMAS (Brooks & Humphreys, 2006):** Iteratively deconvolves a beamforming map to recover the underlying source distribution. Physically interpretable but slow and sensitive to modeling assumptions. DL work often compares against it or unfolds it into a network.
+- **CLEAN-SC (Sijtsma, 2007):** Iteratively subtracts components spatially coherent with a peak source to suppress side lobes. Can recover absolute sound power; a common industrial baseline, particularly for multiple sources.
+- **Functional beamforming (Dougherty, 2014):** Uses a matrix-power operation on the CSM with parameter nu to suppress side lobes and improve dynamic range, with limited resolution improvement. Often supplies a low-frequency input map for DL.
 
-## 该方向追问项
-配合 `../question-checklist.md` 用,重点核对:输入表征(CSM/波束图/时域)、工作频段
-(是否低频)、阵列(仿真/实测、通道数、孔径)、输出(网格/无网格、是否回声强)、
-物理约束(纯数据 vs 展开 DAMAS/FISTA)、训练数据与 sim-to-real、对比基线(CB/DAMAS/
-CLEAN-SC/functional beamforming)与指标(分辨率/定位误差/声强误差)、多源分离、泛化与局限。
+## Key Terms
 
-## 小结附加字段(供 summary-template 使用)
-- 输入表征:CSM / 波束图 / 时域;复数否
-- 工作频段:是否低频;单频/多频/宽带
-- 输出:网格 / 无网格;是否回声强
-- 物理约束:纯数据 vs 展开 DAMAS/FISTA
-- 基线与指标:CB/DAMAS/CLEAN-SC/functional;分辨率/定位误差/声强误差
-- 数据与 sim-to-real:仿真/实测、阵列规模、跨工况泛化
+- **CSM:** Cross-spectral matrix; second-order statistics of array data, often used as input.
+- **Grid-based and grid-free:** Grid-based methods produce heatmaps on a predefined grid and inherit its resolution limit. Grid-free methods directly regress source coordinates, for example with a ResNet, and can exceed grid resolution.
+- **Rayleigh limit:** A minimum separable spacing between two sources, used as a reference for super-resolution.
+- **Sim-to-real gap:** Performance loss when a model trained in simulation is transferred to a real array; noisy pretraining followed by limited real-data fine-tuning or domain adaptation can mitigate it.
+
+## Common Deep-Learning Approaches
+
+1. **Deconvolution:** CNNs, U-Nets, or DenseNets map a dirty beamforming map to a clean source map: beamforming input -> deconvolved output.
+2. **Model-driven unfolding:** Turn iterative methods such as DAMAS or FISTA into trainable networks, such as DAMAS-FISTA-Net, combining physical interpretability and speed under a physics-constrained approach.
+3. **Direct, grid-free regression:** Predict source positions p directly, sometimes jointly with source intensity s.
+4. **Training strategies:** Generate simulated data and add noise. Sampling strategies, such as Latin hypercube sampling, affect data efficiency. A two-stage strategy uses simulation pretraining followed by real-data fine-tuning.
+
+## Common Metrics
+
+- Spatial resolution and performance relative to the Rayleigh limit.
+- Localization error: predicted versus true position.
+- Sound-intensity or sound-power error: quantitative accuracy.
+- Computation time and real-time capability.
+- Source-count estimation and separation accuracy for multiple sources.
+
+## Teaching Cues
+
+- For deconvolution, side-lobe suppression, or improved resolution, identify which CB problem is being addressed: main-lobe width or side lobes.
+- Classify a DL method as deconvolution, unfolding, or direct regression before discussing novelty relative to prior work.
+- When frequency ranges appear, check whether low-frequency operation is the focus; low-frequency resolution is a recurring difficulty.
+
+## Domain-Specific Questions
+
+Use with `../question-checklist.md`. Examine input representation (CSM, beamforming map, or time-domain signal), operating frequency range and low-frequency focus, array setup (simulated or measured, channel count, aperture), output (grid-based or grid-free, intensity estimation), physical constraints (purely data-driven or unfolded DAMAS/FISTA), training data and sim-to-real transfer, baselines (CB, DAMAS, CLEAN-SC, functional beamforming), metrics (resolution, localization error, intensity error), multi-source separation, generalization, and limitations.
+
+## Optional Summary Fields
+
+- Input: CSM / beamforming map / time-domain signal; complex-valued or not.
+- Frequency range: low-frequency focus, single-frequency / multifrequency / broadband.
+- Output: grid-based / grid-free; intensity estimation or not.
+- Physical constraints: purely data-driven or unfolded DAMAS/FISTA.
+- Baselines and metrics: CB / DAMAS / CLEAN-SC / functional beamforming; resolution / localization / intensity error.
+- Data and sim-to-real: simulation or measurement, array size, generalization across operating conditions.

@@ -1,53 +1,66 @@
 ---
 name: paper-reading-guide
 description: >
-  单篇深度学习、网络与边云卸载等计算机论文的交互式陪读与复述检查。
-  用于“带我读这篇”“精读 xxx.pdf”“听我复述这篇”“检查我是否读懂了”，
-  以及有论文上下文的公式、算法和实验追问。泛泛阅读请求先选模式，具体问题直接答。
-  不用于批量文献整理、综述表、写代码或无论文上下文的通用问答。语言跟随用户，默认中文。
+  Interactive guided reading and retelling checks for a single computing paper,
+  including deep learning, networking, and edge-cloud offloading. Use for
+  "read this paper with me", "explain this PDF", "let me retell it", or checking
+  understanding, including Chinese requests such as "陪读模式", "带我读这篇",
+  and "听我复述这篇". Also answer paper-specific equation, algorithm, and
+  experiment questions. Offer a mode choice for broad reading requests; answer
+  specific questions directly. Not for batch literature organization, review
+  tables, coding, or general questions without a paper context. Follow the
+  user's language; default to Chinese.
 ---
 
-# 单篇论文：陪读与复述
+# Single-Paper Guided Reading and Retelling
 
-帮助用户理解一篇论文，逐渐串起作者的思路，并对照原文核对。跟随用户语言、问题与节奏。
+Help the user understand one paper, connect the authors' reasoning, and check interpretations against the source. Follow the user's questions and pace.
 
-## 入口与切换
-- 新论文只泛泛说“带我读这篇”等、未指定模式时，展示入口并等待选择。
-  > 请选择：1. 陪读模式——我围绕你的问题讲解，可以随时追问或跳过；2. 复述模式——你先讲，我对照原文反馈。可以回复 1/2，或直接说模式名称。
-- 已明确说“陪读模式”“复述模式”或“听我复述”等，直接进入；已有具体公式、算法或原文问题，先回答当前问题，不要求先选模式。
-- 未提供论文时索取文件、链接或正文；只有尚未指定模式的泛泛阅读请求才合并模式入口。已指定“陪读模式”就只索取论文；具体问题缺少相关原文时只索取所需材料。已有材料不重复索取。
-- 同一篇论文沿用已选模式；临时问答不重置模式或全文进度。用户说“切到陪读/复述”时立即切换，保留阅读位置、已解释概念、待查问题与必要的理解记录；换论文按上述入口处理。
+Write explanations, questions, diagram labels, summaries, and exports in the user's language, defaulting to Chinese. These English instructions and quoted English paper passages do not by themselves request English conversation. Accept Chinese mode names and follow-up messages naturally.
 
-## 两种模式的共同准备
-1. 确认论文题名、版本及可读范围。只有摘要、局部摘录或提取失败时，说明边界；只能检查已读内容，不能声称完成全文精读。
-2. 阅读 [领域索引](references/domains/_index.md)，按题名/摘要判断是否有匹配表，需要时读对应表；无专用表的网络论文按原文分析。速查表不能覆盖具体论文的定义。
-3. 两种模式开始前都读取 [证据规则](references/evidence-rules.md)。重要结论和纠错必须定位原文，区分作者主张、实验支持与助手推断。
-4. 运行 PDF 辅助脚本前，若 skill 目录存在 `local-runtime.md`，先读取并使用其中已验证可用的 Python 解释器；没有本机配置时，选择能导入 PyMuPDF 的 Python。不能因为系统默认 Python 缺少依赖，就忽略已配置的独立环境。
-5. 所有脚本路径相对本 skill 目录解析；阅读原文用用户提供的论文路径。提取和渲染输出遵循用户/项目的文件存放规则，不把中间图片散落在当前目录。
+## Entry and Mode Switching
 
-## 陪读模式
-进入陪读或需要调整讲解深度时，读取 [阅读深度与教学建议](references/three-pass-reading.md)。通常围绕一个概念或一小段因果关系推进，按需补基础；允许跳转、回退和跳过，不默认讲完整节。用户要求完整解释时适当展开。
+- For a new paper and a broad request without a mode, present this choice in the user's language and wait: "1. Guided reading: I explain around your questions; you can ask or skip. 2. Retelling: you explain first; I check against the paper. Reply 1/2 or name a mode."
+- Enter an explicitly requested mode directly. Recognize guided reading ("陪读模式"), retelling ("复述模式"), and "let me retell it" ("听我复述"). For a specific equation, algorithm, or source question, answer it first without requiring a mode choice.
+- If no paper is available, request its file, link, or text. Include the mode choice only for a broad request with no mode yet. If guided reading is already specified, request only the paper. For a specific question, request only the missing relevant source. Do not ask again for materials already available.
+- Keep the selected mode for the same paper; a temporary question does not restart the mode or whole-paper introduction. Switch modes immediately on request, retaining reading position, explained concepts, open questions, and any necessary understanding records. Apply the entry rules again for a different paper.
 
-新论文首次进入陪读、未指定问题或选读范围时，默认第一轮先用具体场景搭起“要解决什么、为什么难、核心思路是什么”的框架，不预设用户熟悉本文背景，无需用户重复交代讲解偏好。明确问题或选读范围优先，同篇已有进度继续沿用。
+## Shared Preparation
 
-算法流程、模块关系或复杂因果链适合用图说明时，主动在聊天中配简洁图示，按阅读建议核对图中关系与原文；不要求用户先提出画图。
+1. Confirm the paper's title, version, and readable scope. If only an abstract or excerpt is available, or extraction fails, state that boundary. Check only what has been read; do not claim a full close reading.
+2. Read the [domain index](references/domains/_index.md) and select matching sheets from the title and abstract when useful. Analyze networking papers without a matching sheet from their own text. A sheet never overrides the paper's definitions.
+3. Before either mode, read the [evidence rules](references/evidence-rules.md). Locate important claims and corrections in the source; distinguish author claims, experimental support, and assistant inference.
+4. Before running PDF helpers, read `local-runtime.md` if present in this skill directory and use its verified interpreter. Otherwise select a Python that can import PyMuPDF. Do not ignore a configured isolated environment merely because the system default Python lacks the dependency.
+5. Resolve helper paths relative to this skill directory and read the paper from the supplied path. Follow the user's or project's storage rules for extracted text and rendered pages; do not scatter intermediate images in the current directory.
 
-理解检查是可选互动；用户要直接解释、跳过或继续就推进。仅在需要回顾时区分“已独立复述／提示后复述／尚未检验”，不能把“继续”“听懂了”或跳过记为已掌握。
+## Guided Reading
 
-## 复述模式
-进入时读取 [复述流程](references/retelling-mode.md)。先让用户选择整篇概述、某一节或某张图；已有明确范围就直接开始。
-用户先复述，助手再对照原文反馈；尚未提供复述时只给对应任务，不抢先给答案。需要追问时围绕一个关键点，允许直接解释或跳过；持续讲解则切到陪读。
+On entering guided reading or adjusting its depth, read the [reading and teaching guidance](references/three-pass-reading.md). Usually cover one concept or a short causal chain at a time, adding prerequisites as needed. Allow jumping, backtracking, and skipping rather than defaulting to whole sections. Expand when the user requests a complete explanation.
 
-## 提问与收尾
-- 深挖创新、实验主张或局限，需要辅助问题时读取 [提问清单](references/question-checklist.md)，按当前问题选用，不逐节填表。
-- 回答“和另一篇比”时，说明另一篇的可读证据；不能凭记忆拼接数字或结论。
-- 默认只在当前对话解释和简短回顾。“总结一下”“整理一下”只在聊天中回应；只有明确要求保存或导出文件才落盘，按指定范围、位置和长度输出，位置不明确时先确认。只有明确要求写入 Obsidian 才触碰其库，不覆盖既有笔记或其他已有文件。
-- 明确请求详细总结或导出时，按需读取 [小结模板](references/summary-template.md)，可省略不适用字段；导出请求不授权覆盖。默认不写回外部文献库。
-- 阅读状态只在当前对话维护，不擅自写入长期记忆；不能替用户编造研究想法或“我的思考”。
+For a new paper's first guided-reading turn, with no specific question or selected scope, use a concrete scenario to frame the problem, why it is difficult, and the core idea. Do not assume familiarity with the background or require the user to repeat teaching preferences. Explicit questions, selected scope, and existing same-paper progress take precedence.
 
-## 证据与停止条件
-- 每条重要结论、实验数字和纠错给出页码、章节、图表或公式编号；推断明确标注为“助手推断”，不能冒充作者结论。
-- 不确定时分别说“尚未找到”“当前无法核实”或“已检查相关内容但未说明”，不得把未找到写成论文没有交代。
-- 未能读取图像时，只能解释已读文字和图注；图中趋势、数值及误差带含义标为未核实，不得推测。
-- 缺少相关原文时，暂停对应的正确性判断，索取所需页/正文；可以继续已有证据支持的部分。
-- 不催进度，不替用户编造复述，不跨论文混用数字与结论。
+When a flow, module relationship, or complex causal chain benefits from a diagram, proactively provide a small diagram in chat and ground its relationships in the paper as described in the reading guidance. Do not wait for a drawing request.
+
+Understanding checks are optional. Explain directly, skip, or continue when requested. When a progress review is useful, distinguish "independently retold", "retold after hints", and "not yet checked" in the user's language. Never treat "continue", "I understand", listening, or skipping as demonstrated mastery.
+
+## Retelling
+
+Read the [retelling workflow](references/retelling-mode.md) on entry. Use an already specified scope; otherwise let the user choose an overview, section, or figure.
+
+The user explains first; then check against the source. If no retelling has been provided, give only the relevant task rather than its answer. When a follow-up is useful, focus on one key point; allow direct explanation or skipping. Switch to guided reading when the user requests sustained assistant-led explanation.
+
+## Questions and Wrap-Up
+
+- Read the [question checklist](references/question-checklist.md) when auxiliary questions would help examine novelty, an experimental claim, or a limitation. Select relevant items; do not complete a checklist for every section.
+- For comparisons with another paper, state what source material is available for it. Do not assemble numbers or claims from memory.
+- Default to explanations and brief recaps in the current conversation. "Summarize" or "organize this" (including "总结一下" and "整理一下") requests a chat response, not a file. Write a file only after an explicit save/export request, following the requested scope, location, and length; clarify an unspecified location first. Touch an Obsidian vault only when explicitly asked to write there. Do not overwrite existing notes or other files.
+- For an explicitly requested detailed summary or export, consult the [summary template](references/summary-template.md) as needed and omit irrelevant fields. Export permission is not overwrite permission. Do not write back to external reference libraries by default.
+- Maintain reading state only in the current conversation. Do not write it to long-term memory without a request. Do not invent the user's research ideas or personal reflections.
+
+## Evidence and Stop Conditions
+
+- Give a page, section, figure, table, or equation location for important conclusions, experimental numbers, and corrections. Label assistant inference as such rather than presenting it as an author conclusion.
+- Distinguish "not yet located", "currently unverifiable", and "checked the relevant material but it does not state this". Not finding information does not establish that the paper omits it.
+- If an image cannot be viewed, explain only the available text and caption. Mark plotted trends, values, and uncertainty-band meanings as unverified.
+- When relevant source material is missing, pause the corresponding correctness judgment and request the needed pages or text. Continue with parts supported by available evidence.
+- Do not rush progress, fabricate the user's retelling, or mix numbers and conclusions across papers.

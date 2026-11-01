@@ -1,31 +1,34 @@
-# 通用速查 —— 深度学习论文(兜底,任何方向都适用)
+# General Reference: Deep-Learning Papers
 
-任何 DL 论文判不出细分方向时用这张。讲解时围绕"问题设定 → 方法 → 训练 →
-评价 → 泛化"五段展开。
+Use this sheet when a deep-learning paper has no matching specialist sheet. Select relevant questions around problem setting, method, training, evaluation, and generalization.
 
-## 一篇 DL 论文的通用骨架
-1. **问题设定 / 任务**:输入是什么、输出是什么、损失衡量什么。
-2. **方法 / 架构**:网络结构(CNN/Transformer/扩散/图网络…)、关键模块、归纳偏置。
-3. **训练**:数据、目标函数、优化器、关键技巧(预训练、自监督、对比学习、蒸馏…)。
-4. **评价**:用什么数据集与指标,跟哪些基线比,消融实验拆了哪些组件。
-5. **泛化 / 局限**:分布外、规模、计算成本、失败案例。
+## General Paper Framework
 
-## 通用核心概念(讲解时常用)
-- **归纳偏置(inductive bias)**:架构里"内建的假设"(卷积的局部性、注意力的全局关联)。
-- **自监督 / 预训练 → 微调**:无标签学表征,再迁移到下游小数据任务。
-- **对比学习**:拉近正样本、推开负样本来学表征(InfoNCE 一类损失)。
-- **消融实验(ablation)**:逐个去掉组件看掉多少分,用来证明"哪一部分真有用"。
-- **端到端 vs 分阶段**:整条链路一起学,还是拆成几步分别学。
+1. **Problem or task:** Inputs, outputs, and what the loss measures.
+2. **Method or architecture:** Network family (CNN, Transformer, diffusion, graph network, and so on), key modules, and inductive bias.
+3. **Training:** Data, objectives, optimizer, and key techniques such as pretraining, self-supervision, contrastive learning, or distillation.
+4. **Evaluation:** Datasets, metrics, baselines, and components examined by ablations.
+5. **Generalization and limitations:** Distribution shift, scale, computational cost, and failures.
 
-## 通用追问项
-- 真正的创新是"新架构""新训练目标""新数据/新任务"还是"新分析"?(别被包装词迷惑)
-- 提升来自方法本身,还是更大模型/更多数据/更多算力?消融能否撇清?
-- 基线选得公平吗?在同等设置下比的吗?
-- 报的提升有显著性 / 多次随机种子吗?
-- 复现成本(数据可得性、算力、代码开源)如何?
+## Common Concepts
 
-## 小结附加字段(供 summary-template 使用)
-- 创新类型:新架构 / 新训练目标 / 新数据-任务 / 新分析
-- 提升来源:方法本身 vs 更大模型/更多数据/更多算力(消融能否撇清)
-- 显著性:随机种子数、方差/置信报告
-- 复现成本:数据可得性、算力、代码开源
+- **Inductive bias:** Assumptions built into an architecture, such as convolutional locality or attention's global relationships.
+- **Self-supervision and pretraining followed by fine-tuning:** Learn representations without labels, then transfer them to a smaller downstream dataset.
+- **Contrastive learning:** Learn representations by bringing positive pairs closer and pushing negative pairs apart, using objectives such as InfoNCE.
+- **Ablation:** Remove components in turn and measure performance changes to assess which parts are useful.
+- **End-to-end and staged learning:** Train the whole pipeline jointly or split it into separately learned stages.
+
+## General Follow-Up Questions
+
+- Is the actual contribution an architecture, training objective, dataset or task, or analysis? Look past promotional wording.
+- Is improvement attributable to the method, model size, more data, or more compute? Do ablations separate these effects?
+- Are baselines fair and evaluated under equivalent settings?
+- Are significance or multiple random-seed runs reported?
+- What does reproduction require in terms of data availability, compute, and released code?
+
+## Optional Summary Fields
+
+- Contribution type: architecture / training objective / dataset or task / analysis.
+- Source of improvement: method versus larger models, more data, or more compute, and whether ablations distinguish them.
+- Significance: seed count, variance, or confidence reporting.
+- Reproduction cost: data availability, compute, and released code.

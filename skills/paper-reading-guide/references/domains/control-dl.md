@@ -1,47 +1,52 @@
-# 领域速查 —— 控制 + 深度学习
+# Domain Reference: Control and Deep Learning
 
-涵盖强化学习控制、学习型控制、系统辨识、模仿学习、轨迹优化 + 学习、sim-to-real 等。
+Covers reinforcement-learning control, learning-based control, system identification, imitation learning, trajectory optimization with learning, and sim-to-real transfer.
 
-## 问题设定
-学一个**策略 / 控制器**,把状态(或观测)映射到动作,使某个长期目标(回报 /
-代价 / 跟踪误差)最优,同时常要兼顾稳定性、约束、安全与样本效率。
-区分:状态可测 vs 部分可观(POMDP);连续 vs 离散动作;在线交互 vs 离线数据。
+## Problem Setting
 
-## 核心概念
-- **MDP / 回报 / 折扣**:状态-动作-奖励,目标是最大化折扣累积回报。
-- **model-free vs model-based**:直接学策略/价值,还是先学环境动力学再规划。
-- **on-policy vs off-policy**:用当前策略数据 vs 复用历史数据(样本效率差异大)。
-- **actor-critic 家族**:策略(actor)+价值(critic)联合。常见 PPO / SAC / TD3 / DDPG。
-- **离线 RL(offline RL)**:只用固定数据集学,不再交互;难点是分布偏移/外推误差。
-- **模仿学习**:从专家示范学。BC(行为克隆)、DAgger、GAIL(对抗式)。
-- **MPC + 学习**:模型预测控制里用 NN 学动力学/代价/终端值;或学一个 MPC 的"近似策略"。
-- **系统辨识 / 神经动力学**:用 NN(含 Neural ODE)拟合系统动力学。
-- **Koopman**:把非线性动力学升维成近似线性,便于用线性控制工具。
-- **稳定性 / 安全**:Lyapunov 函数、控制屏障函数(CBF)、约束 RL、可达性。
-- **sim-to-real**:仿真训练→真机部署的落差;域随机化、系统辨识、域适应来弥合。
+Learn a policy or controller mapping states or observations to actions to optimize a long-term objective such as return, cost, or tracking error. Stability, constraints, safety, and sample efficiency often also matter.
 
-## 常见数据集 / 基准
-MuJoCo、DeepMind Control Suite、OpenAI Gym/Gymnasium、Atari、Meta-World、
-robosuite、Isaac Gym/Lab;离线 RL 常用 D4RL。真实机器人则看自建平台。
+Distinguish measurable states from partial observability (POMDP), continuous from discrete actions, and online interaction from offline data.
 
-## 常用指标
-- **回合回报 / 累积奖励**、**成功率**、**跟踪/控制误差**
-- **样本效率**(达到某性能所需交互步数)、**渐近性能**、**训练稳定性/方差**
-- **泛化**(跨任务、跨初值、跨动力学扰动)、**sim-to-real 掉点**
-- 安全类:**约束违反次数 / 越界率**
+## Core Concepts
 
-## 该方向追问项
-- 任务设定:状态可测还是部分可观?连续/离散动作?在线还是离线数据?
-- 方法属于上面哪一类(model-free/based、imitation、MPC+学习、offline…)?
-- 奖励/代价怎么设计的?有没有 reward shaping、稀疏奖励问题?
-- 样本效率与渐近性能哪个是卖点?跟谁比(PPO/SAC… 还是经典控制)?
-- 有没有稳定性/安全/约束保证?是经验性的还是有理论?
-- 在仿真还是真机验证?sim-to-real 掉多少?用了什么弥合手段?
-- 用了几个随机种子?方差多大?(RL 结果对种子极敏感)
+- **MDP, return, and discounting:** States, actions, and rewards; the objective is to maximize discounted cumulative return.
+- **Model-free and model-based:** Learn a policy or value directly, or learn environment dynamics and then plan.
+- **On-policy and off-policy:** Use data from the current policy or reuse historical data, with substantial sample-efficiency implications.
+- **Actor-critic:** Combine a policy (actor) and value estimator (critic); common examples include PPO, SAC, TD3, and DDPG.
+- **Offline RL:** Learn solely from a fixed dataset without further interaction; distribution shift and extrapolation error are key difficulties.
+- **Imitation learning:** Learn from expert demonstrations; examples include behavioral cloning (BC), DAgger, and adversarial GAIL.
+- **MPC with learning:** Use neural networks for dynamics, costs, or terminal values in model predictive control, or learn an approximate MPC policy.
+- **System identification and neural dynamics:** Fit system dynamics using neural networks, including Neural ODEs.
+- **Koopman:** Lift nonlinear dynamics into a higher-dimensional approximately linear representation for linear control tools.
+- **Stability and safety:** Lyapunov functions, control barrier functions (CBFs), constrained RL, and reachability.
+- **Sim-to-real:** The gap between simulation training and real deployment; domain randomization, system identification, and domain adaptation are ways to address it.
 
-## 小结附加字段(供 summary-template 使用)
-- 任务设定:状态可测/部分可观、连续/离散动作、在线/离线
-- 方法类别:model-free / model-based / 模仿 / MPC+学习 / offline …
-- 样本效率 vs 渐近性能(卖点是哪个)
-- 稳定性/安全/约束保证:有/无、经验性还是有理论
-- 验证方式:仿真 / 真机;sim-to-real 掉点;随机种子数与方差
+## Datasets and Benchmarks
+
+MuJoCo, DeepMind Control Suite, OpenAI Gym/Gymnasium, Atari, Meta-World, robosuite, and Isaac Gym/Lab; D4RL for offline RL. For physical robots, inspect the authors' own platform.
+
+## Common Metrics
+
+- Episode return or cumulative reward, success rate, tracking or control error.
+- Sample efficiency (interaction steps needed to reach a performance level), asymptotic performance, training stability or variance.
+- Generalization across tasks, initial conditions, and dynamics disturbances; performance loss from sim-to-real transfer.
+- For safety: constraint-violation counts or boundary-violation rates.
+
+## Domain-Specific Questions
+
+- Are states measurable or partially observed? Are actions continuous or discrete? Is data online or offline?
+- Which method family applies: model-free, model-based, imitation, MPC with learning, offline RL, or another family above?
+- How is reward or cost designed? Are reward shaping or sparse rewards relevant?
+- Is the main claim sample efficiency or asymptotic performance? Which baselines are used: PPO/SAC or classical control, for example?
+- Are stability, safety, or constraint guarantees given? Are they empirical or theoretical?
+- Is validation in simulation or on hardware? How large is the sim-to-real drop, and what transfer techniques are used?
+- How many random seeds are used, and how large is the variance? RL results are sensitive to seeds.
+
+## Optional Summary Fields
+
+- Task setting: measurable or partially observed states, continuous or discrete actions, online or offline data.
+- Method family: model-free / model-based / imitation / MPC with learning / offline RL.
+- Main emphasis: sample efficiency or asymptotic performance.
+- Stability, safety, and constraint guarantees: present or absent, empirical or theoretical.
+- Validation: simulation or hardware, sim-to-real loss, seed count, and variance.

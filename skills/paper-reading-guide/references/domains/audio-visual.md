@@ -1,44 +1,49 @@
-# 领域速查 —— 声视觉 / 音频-视觉学习(audio-visual learning)
+# Domain Reference: Audio-Visual Learning
 
-涵盖视听融合、声源的视觉定位、视听分离、视听事件/动作、跨模态表征、视听导航等。
+Covers audio-visual fusion, visual sound-source localization, audio-visual separation, events and actions, cross-modal representations, and audio-visual navigation.
 
-## 问题设定
-利用音频与视觉**两种模态的对应关系**完成任务。核心动机:声音和画面天然时空对齐
-(发声物体在画面里、口型对应语音),可互为监督("自监督"的天然来源)。
-常见任务:把声音**定位到画面里的发声物体**、从混合声里**分离出某物体的声音**、
-判断**视听是否同步/同源**、跨模态检索、视听语音识别/增强、视听导航。
+## Problem Setting
 
-## 核心概念
-- **跨模态对应 / 同步**:同一时刻音画是否来自同一事件,是很多自监督方法的监督信号。
-- **视听融合**:早融合 / 晚融合 / 注意力融合;音频特征(梅尔谱/VGGish)+视觉特征(CNN/ViT)。
-- **声源视觉定位(sound source localization in video)**:输出画面上的热力图,指出"谁在发声"。
-- **视听分离(audio-visual separation)**:用画面线索把混合音频拆开("看着谁就分离谁")。
-- **对比 / 自监督**:用音画配对正负样本学表征(同视频音画为正,跨视频为负)。
-- **时序对齐 / 唇动**:口型与语音的对应,用于视听语音、说话人分离。
+Use correspondence between audio and visual modalities to perform a task. The motivation is their natural spatial and temporal alignment, such as a sounding object in view or lip movements corresponding to speech, which can provide mutual supervision and a source of self-supervision.
 
-## 常见数据集
-- 声源定位:Flickr-SoundNet、VGG-SS(VGGSound Source)
-- 视听事件:AVE(Audio-Visual Event)
-- 视听分离:MUSIC(乐器演奏)、AVSpeech
-- 音频/视频分类预训练:VGGSound、AudioSet、Kinetics
+Common tasks locate the sounding object in an image, separate one object's sound from a mixture, assess synchronization or shared origin, retrieve across modalities, recognize or enhance audio-visual speech, or navigate using audio and vision.
 
-## 常用指标
-- **声源定位**:cIoU(consensus IoU)、AUC(定位热力图与真值框的吻合)
-- **视听分离**:SDR / SI-SDR、PESQ / STOI(语音质量/可懂度)
-- **检索 / 对应**:Recall@K、准确率
-- **事件/动作**:分类准确率、mAP
+## Core Concepts
 
-## 该方向追问项
-- 用的是哪两种模态特征、怎么融合(早/晚/注意力)?
-- 监督从哪来:人工标注,还是音画对应这种自监督信号?
-- 任务输出形式:画面热力图 / 分离波形 / 分类标签 / 检索排序?
-- 数据集与指标是不是该子方向的标准(定位看 cIoU/AUC,分离看 SI-SDR…)?
-- 对"画面里无发声物体""画外音""多物体同时发声"等困难情形处理了吗?
-- 跨数据集/跨场景泛化如何?有没有模态缺失(只有音或只有画)时的退化分析?
+- **Cross-modal correspondence and synchronization:** Whether simultaneous sound and image originate from the same event; a supervision signal for many self-supervised methods.
+- **Audio-visual fusion:** Early, late, or attention-based fusion; audio features such as Mel spectrograms or VGGish combined with visual CNN or ViT features.
+- **Visual sound-source localization:** A heatmap over the image indicating what is making the sound.
+- **Audio-visual separation:** Use visual cues to split mixed audio, isolating the sound of the object being observed.
+- **Contrastive and self-supervised learning:** Learn representations from paired positive and negative audio-visual examples, such as same-video positives and cross-video negatives.
+- **Temporal alignment and lip motion:** Correspondence between mouth movement and speech for audio-visual speech processing and speaker separation.
 
-## 小结附加字段(供 summary-template 使用)
-- 模态与融合方式:早/晚/注意力融合;音频特征 + 视觉特征
-- 监督来源:人工标注 / 音画对应自监督
-- 输出形式:画面热力图 / 分离波形 / 分类 / 检索
-- 困难情形处理:画外音、无发声物体、多物体同时发声
-- 数据集与指标是否为该子方向标准(定位 cIoU/AUC、分离 SI-SDR …)
+## Datasets
+
+- Sound-source localization: Flickr-SoundNet and VGG-SS (VGGSound Source).
+- Audio-visual events: AVE (Audio-Visual Event).
+- Audio-visual separation: MUSIC (musical performances) and AVSpeech.
+- Audio/video classification pretraining: VGGSound, AudioSet, and Kinetics.
+
+## Common Metrics
+
+- **Localization:** cIoU (consensus IoU) and AUC, assessing agreement between localization heatmaps and ground-truth boxes.
+- **Separation:** SDR, SI-SDR, PESQ, and STOI for signal separation, speech quality, or intelligibility.
+- **Retrieval and correspondence:** Recall@K and accuracy.
+- **Events and actions:** Classification accuracy and mAP.
+
+## Domain-Specific Questions
+
+- Which modality features are used, and how are they fused: early, late, or attention-based?
+- Is supervision manually annotated or derived from audio-visual correspondence?
+- What is the output: an image heatmap, separated waveform, class label, or retrieval ranking?
+- Are datasets and metrics appropriate for the subtask, such as cIoU/AUC for localization or SI-SDR for separation?
+- Are difficult cases addressed: no visible sounding object, off-screen sound, or several sounding objects?
+- How well does the method generalize across datasets or scenarios? Is degradation studied when audio or vision is missing?
+
+## Optional Summary Fields
+
+- Modalities and fusion: early / late / attention-based, audio features and visual features.
+- Supervision source: manual labels or correspondence-based self-supervision.
+- Output: image heatmap / separated waveform / classification / retrieval.
+- Difficult cases: off-screen sound, no sounding object, or simultaneous sounding objects.
+- Dataset and metric suitability for the subtask, such as cIoU/AUC or SI-SDR.

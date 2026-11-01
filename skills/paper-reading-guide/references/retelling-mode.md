@@ -1,28 +1,32 @@
-# 复述模式
+# Retelling Mode
 
-目标是检验用户能否独立解释论文。反馈以原文为依据，逐轮暴露和修正理解缺口。
+Check whether the user can explain the paper independently. Ground feedback in the source and expose or repair understanding gaps over successive turns.
 
-## 开始
-- 已选范围就直接使用；否则问“你想先复述整篇概述、某一节，还是某张图？”。未决定时可建议先概述，等用户选择。
-- 对整篇概述可提示“用自己的话说：解决什么问题、核心做法、最有说服力的证据”；对某一节/图只给对应任务，不展示标准答案。
-- 用户已发来复述内容时直接检查，不再要求重讲开场。不要求背原句、固定术语或精确数字，重点检查含义和推理。
-- 无相关原文时，可帮助组织表达或检查内部逻辑，但先说明尚不能判定是否忠实于论文；索取原文后再做事实纠错。
+## Start
 
-## 每轮反馈
-1. 对照已读原文检查事实、因果关系、假设、输入输出、创新与证据之间的联系。用户明确只讲部分内容时，不能把其余全文内容算遗漏。
-2. 按实际需要给出简短反馈：
-   - 讲对了：具体说对哪一点，以及证据位置。
-   - 需要修正：引用/转述用户的具体说法，指出和原文的差异，给出原文定位与必要纠正。
-   - 关键遗漏：只选影响当前范围理解的内容，不要求逐句覆盖原文。
-   - 待核实：材料不全或尚未定位的内容，保留判断，不算用户讲错。
-3. 有必要且用户愿意时，选择一个影响当前理解的缺口追问并等待回答；没有关键缺口时可邀请讨论假设变化，也可直接继续或结束。不要求每轮必答题。
-4. 回答后按同一证据核对。能够独立解释的内容记为“已独立复述”；经提示后解释的记为“提示后复述”；只看过讲解或跳过的记为“尚未检验”。不设虚假的掌握分数。
+- Use an already chosen scope. Otherwise ask, in the user's language, whether to retell the overview, a section, or a figure. You may suggest an overview if undecided, then wait for the choice.
+- For an overview, prompt the user to explain the problem, core idea, and most convincing evidence in their own words. For a section or figure, give only the relevant task, without a model answer.
+- If the user has already provided a retelling, check it directly instead of restarting the opening task. Do not require exact wording, fixed terminology, or memorized numbers; focus on meaning and reasoning.
+- Without the relevant source, help organize the explanation or inspect internal logic, but state that fidelity to the paper cannot yet be judged. Obtain the source before correcting paper-specific facts.
 
-## 提示与模式切换
-- 用户卡住时先提示原文位置、关键词或一个子问题，不马上输出整节答案。
-- 用户明确说“不会，讲一下”“给答案”时，直接解释所问内容；可邀请再复述，但不以此阻塞继续。只听了讲解仍记为尚未检验。
-- 用户要求持续由助手讲时切到陪读模式；用户说“继续”时延续当前模式，不自动变为讲解全文。
-- 随时允许缩小范围、跳过问题、换到另一节或结束。保留已经核对的结果，不能因一个答对的问题宣称读懂整篇。
+## Feedback per Turn
 
-## 收尾
-需要回顾时在聊天中简短说明已核对的要点、已纠正的误解与待查问题，必要时区分复述状态；不持续评分。保留用户实际表述，不能代写“我的思考”或编造已经掌握的内容。详细总结、导出与保存遵循主入口的请求边界。
+1. Check facts, causal links, assumptions, inputs and outputs, novelty, and connections to evidence against the text actually read. Do not count unrequested parts of the paper as omissions when the user chose a narrower scope.
+2. Give only the feedback that is useful:
+   - **Correct:** Identify the specific point and its source location.
+   - **Needs correction:** Quote or paraphrase the user's actual statement, explain how it differs from the paper, and give the location and necessary correction.
+   - **Key omission:** Select only something important to the current scope; do not demand sentence-by-sentence coverage.
+   - **Unverified:** Withhold judgment when material is incomplete or not yet located; do not mark the user wrong.
+3. When necessary and the user is willing, ask about one consequential gap and wait. If no key gap remains, you may invite discussion of a changed assumption, continue, or stop. A question is not required after every response.
+4. Check subsequent answers against the same evidence. Distinguish independent retelling, retelling after hints, and material not yet checked. Listening to explanations or skipping leaves understanding untested. Do not invent mastery scores.
+
+## Hints and Switching Modes
+
+- When the user is stuck, first offer a source location, keyword, or smaller question rather than immediately supplying a whole-section answer.
+- If the user explicitly asks for an explanation or answer, provide it directly. You may invite another retelling, but do not make it a condition for continuing. Hearing an explanation alone remains untested.
+- Switch to guided reading when the user requests sustained assistant-led explanation. "Continue" stays within the current mode rather than automatically starting a whole-paper lecture.
+- Allow a narrower scope, skipping, another section, or ending at any time. Retain what was already checked; one correct answer does not establish whole-paper understanding.
+
+## Wrap-Up
+
+When a recap is useful, briefly state the checked points, corrected misunderstandings, and open questions in chat, distinguishing retelling status only as needed. Do not score continuously. Preserve the user's actual statements; do not invent personal reflections or mastery. Follow the entrypoint's request boundaries for detailed summaries, export, and saving.

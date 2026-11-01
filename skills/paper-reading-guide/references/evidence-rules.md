@@ -1,30 +1,34 @@
-# 原文证据规则
+# Source Evidence Rules
 
-## 结论与定位
-- 阅读时保留论文题名、版本、可读范围。PDF 页序从 1 起，与印刷页码不同则注明。
-- 重要判断采用“结论〔作者主张 / 实验支持 / 助手推断〕— 原文定位”的短格式。不要为每句常识添加标签，重点覆盖创新、比较、实验结果、局限和纠错。
-- 证据位置可以是 PDF 页码 + 节/图表/公式编号；HTML 用节标题与原文短语。提供可打开的本地或网页链接时保留位置说明。
-- 引言的贡献声明只能证明作者如此主张。讨论创新是否成立、对比是否公平或机制是否有效，还要检查方法、实验、消融与相关工作；证据不足就保留判断。
-- 实验数字同时说明数据集、指标方向、比较对象及相关设置；改善是百分点还是相对百分比必须区分。未核对不能计算或填入猜测值。
-- 推断和教学类比明确标注；类比的简化不能替代论文假设。不能把领域速查表的常见设定套成本文事实。
+## Claims and Locations
 
-## 未知状态
-- “尚未找到”：相关信息尚未定位，应查正文相应章节、附录或补充材料（可用时）。
-- “当前无法核实”：缺少原文、附件不可访问、提取失败、图像无法查看等；说明缺少哪项材料。
-- “已检查相关内容但未说明”：列出查过的章节/附录及范围，限定结论；不能仅因摘要或所读一节没写就宣称全文没有。
-- 提问清单用于找待核查项，不是证明论文缺陷的证据。没有检索完整相关材料的条目留在待查区。
+- Retain the paper's title, version, and readable scope. Count PDF pages from 1 and distinguish them from printed page numbers when they differ.
+- For important judgments, use a compact form such as "claim [author claim / experimental support / assistant inference] - source location", translated into the user's language. Focus on novelty, comparisons, results, limitations, and corrections rather than tagging every commonplace statement.
+- Locate PDF evidence by page plus section, figure, table, or equation number. For HTML, use a section heading and identifying phrase. Keep the location description even when supplying a clickable local or web link.
+- A contribution statement in the introduction establishes only what the authors claim. Assessing novelty, comparison fairness, or mechanism effectiveness also requires the method, experiments, ablations, and related work. Withhold judgment when evidence is insufficient.
+- For experimental numbers, state the dataset, metric direction, comparator, and relevant settings. Distinguish percentage points from relative percentage changes. Do not calculate from unverified values or fill gaps with guesses.
+- Identify inference and teaching analogies. Simplifications in an analogy do not replace the paper's assumptions. Do not import common domain-sheet settings as facts about this paper.
 
-## PDF 定位与看图
-- `scripts/extract_outline.py` 只提供启发式章节、摘要片段和命中的图注行。图注可能跨行、漏检，摘要可能截断或越界；回原页核对，不能把输出当完整正文。
-- 抽取为空可能来自扫描页或特殊排版；先说明无法从文本层判断，再尝试渲染/OCR，不能直接断定全部论文是扫描件。
-- 找不到图表时，可搜索正文中的编号、查目录/书签或渲染疑似页面，核对完整图注与对应图像。
-- 关键公式、图表或提取结果可疑时回看原始页面图像，核对上下标、求和范围、正负号、单位及附近定义等相关细节。文本乱码不能作为论文写错的证据；图像仍无法辨认时说明哪些符号未确认，暂停依赖它们的推导。
-- 渲染示例：`python <skill目录>/scripts/render_page.py <论文路径> <PDF页序> --out <任务输出目录>`。路径含空格时按所用 shell 正确引用。
-- 渲染成功只证明图片已生成。实际查看后，记录坐标轴/单位、图例、对比设置、图注及误差带定义；未定义的阴影不能直接认定为标准差、方差或置信区间。
-- 图中精确数值优先取正文或表格；从图估读时标“约”，注明读图估计，不能报伪精确值。
-- 环境不能查看图像时，说明视觉证据未核实，可以请用户描述/查看相关图；未经图像核对，不得断言曲线趋势、热力图位置或图中数值。
+## Unknown Information
 
-## 补充推导与证明边界
-- 适时区分原文结论、背景知识、教学类比与助手补充推导，不必逐句贴标签。补充推导说明使用的前提及其来源，区分论文假设与为了例子额外作的简化。
-- 推不出来就保留判断：助手推导失败、多个 agent 意见一致都不能代替数学证明，也不能据此断言定理有误。
-- 玩具手算、程序运行成功、有限测试和论文复现各有证据范围。用某组设置下的结果支持对应范围，不把局部成功升级为一般保证；讨论实验是否支持主张时核对相关指标、基线与比较条件。
+- **Not yet located:** The relevant information has not been found. Check the appropriate body sections, appendices, and available supplements.
+- **Currently unverifiable:** The source is missing, an attachment is inaccessible, extraction failed, or an image cannot be viewed. State what material is missing.
+- **Checked but not stated:** Name the sections or appendices checked and limit the conclusion to that scope. An omission from an abstract or one section does not establish a whole-paper omission.
+- The question checklist identifies things to investigate; it does not prove a flaw. Leave items unresolved until the relevant materials have been searched.
+
+## PDF Navigation and Visual Inspection
+
+- `scripts/extract_outline.py` provides heuristic headings, an abstract excerpt, and caption lines that matched its patterns. Captions may wrap or be missed, and the abstract may be truncated or extend into other text. Check the original pages rather than treating this output as the complete paper.
+- Empty extraction may result from scans or unusual layouts. Explain that the text layer cannot establish the content, then try rendering or OCR; do not immediately classify the whole paper as scanned.
+- If a figure or table is hard to locate, search for its number in the text, consult contents or bookmarks, or render likely pages to check the full caption and image together.
+- Revisit original page images for key equations, figures, tables, or suspicious extraction. Check relevant subscripts, superscripts, summation bounds, signs, units, and nearby definitions. Garbled extraction is not evidence of an error in the paper. If symbols remain illegible, identify the uncertainty and pause derivations that depend on them.
+- Example: `python <skill-dir>/scripts/render_page.py <paper-path> <PDF-page-number> --out <task-output-dir>`. Quote paths containing spaces according to the shell.
+- Successful rendering establishes only that an image was generated. Actually view it before recording axes and units, legends, comparison settings, captions, and uncertainty-band definitions. Do not label an undefined shaded region as standard deviation, variance, or a confidence interval.
+- Prefer body text or tables for exact values. Mark graph-read estimates as approximate and identify their visual origin; do not invent precision.
+- If images cannot be viewed, state that the visual evidence is unverified. Ask the user to inspect or describe the relevant figure if helpful. Do not assert curve trends, heatmap positions, or plotted values without viewing the image.
+
+## Supplemental Derivations and Proof Boundaries
+
+- Distinguish source conclusions, background knowledge, teaching analogies, and assistant-added derivations when relevant without tagging every sentence. State a supplemental derivation's premises and their sources, separating paper assumptions from extra simplifications for an example.
+- Withhold judgment when a derivation cannot be completed. An assistant's failure to derive a result, or agreement among several agents, is not a mathematical proof and does not establish that a theorem is wrong.
+- A toy calculation, successful program run, finite test, and paper reproduction each have a different evidential scope. Limit claims to the tested settings rather than turning local success into a general guarantee. Check relevant metrics, baselines, and comparison conditions when judging experimental support.
