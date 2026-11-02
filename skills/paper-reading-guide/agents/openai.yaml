@@ -1,7 +1,7 @@
 interface:
-  display_name: "Paper Reading and Retelling"
-  short_description: "Guided paper reading, source checks, and retelling feedback"
-  default_prompt: "Use $paper-reading-guide to read this paper and first let me choose guided reading or retelling; use my conversation language, defaulting to Chinese."
+  display_name: "Paper Reading, Retelling, and Analysis"
+  short_description: "Guided reading, full paper analysis, and retelling feedback"
+  default_prompt: "Use $paper-reading-guide for this paper in my requested mode, offering guided reading, retelling, or full analysis only when my intent is unclear; follow my language, defaulting to Chinese."
 
 policy:
   allow_implicit_invocation: true

@@ -1,18 +1,19 @@
 ---
 name: paper-reading-guide
 description: >
-  Interactive guided reading and retelling checks for a single computing paper,
-  including deep learning, networking, and edge-cloud offloading. Use for
-  "read this paper with me", "explain this PDF", "let me retell it", or checking
-  understanding, including Chinese requests such as "陪读模式", "带我读这篇",
-  and "听我复述这篇". Also answer paper-specific equation, algorithm, and
-  experiment questions. Offer a mode choice for broad reading requests; answer
-  specific questions directly. Not for batch literature organization, review
-  tables, coding, or general questions without a paper context. Follow the
+  Guided reading, user-first retelling checks, and complete analysis of a single
+  computing paper, including deep learning, networking, and edge-cloud offloading.
+  Use for "read this paper with me", "explain this PDF", "let me retell it",
+  "analyze this paper", "陪读模式", "听我复述这篇", "完整分析模式", "拆论文",
+  "完整拆解", or analyzing a paper for a talk. Also answer paper-specific equation,
+  algorithm, and experiment questions. Enter a clear mode directly; offer three
+  modes only for ambiguous reading requests. Presentation outlines and Q&A are
+  prompt-driven, not default analysis output. Not for batch literature organization,
+  review tables, coding, or general questions without a paper context. Follow the
   user's language; default to Chinese.
 ---
 
-# Single-Paper Guided Reading and Retelling
+# Single-Paper Reading, Retelling, and Full Analysis
 
 Help the user understand one paper, connect the authors' reasoning, and check interpretations against the source. Follow the user's questions and pace.
 
@@ -20,16 +21,16 @@ Write explanations, questions, diagram labels, summaries, and exports in the use
 
 ## Entry and Mode Switching
 
-- For a new paper and a broad request without a mode, present this choice in the user's language and wait: "1. Guided reading: I explain around your questions; you can ask or skip. 2. Retelling: you explain first; I check against the paper. Reply 1/2 or name a mode."
-- Enter an explicitly requested mode directly. Recognize guided reading ("陪读模式"), retelling ("复述模式"), and "let me retell it" ("听我复述"). For a specific equation, algorithm, or source question, answer it first without requiring a mode choice.
-- If no paper is available, request its file, link, or text. Include the mode choice only for a broad request with no mode yet. If guided reading is already specified, request only the paper. For a specific question, request only the missing relevant source. Do not ask again for materials already available.
-- Keep the selected mode for the same paper; a temporary question does not restart the mode or whole-paper introduction. Switch modes immediately on request, retaining reading position, explained concepts, open questions, and any necessary understanding records. Apply the entry rules again for a different paper.
+- For a new paper and an ambiguous broad reading request, present this choice in the user's language and wait: "1. Guided reading: I explain in small steps; you can ask or skip. 2. Retelling: you explain first; I check the source. 3. Full analysis: I give a paper-wide breakdown and summary. Reply 1/2/3 or name a mode."
+- Enter a clear mode directly: guided reading ("陪读模式"), retelling ("复述模式", "听我复述"), or full analysis ("完整分析模式", "拆论文", "完整拆解", or a clear request to analyze a paper for an upcoming presentation). Explicit mode and selected scope take precedence. Answer specific equation, algorithm, or source questions first without a mode gate.
+- If no paper is available, request only the missing file, link, or text when intent is clear; include the three-mode choice only when the reading intent is also ambiguous. For a specific question, request only its missing relevant source. Do not request material already available.
+- Keep the selected mode for the same paper; a temporary question does not restart it. Switch immediately on request, retaining verified context, reading position, explained concepts, and open questions. Partial reading does not become full coverage on switching. Apply entry rules again for a different paper.
 
 ## Shared Preparation
 
 1. Confirm the paper's title, version, and readable scope. If only an abstract or excerpt is available, or extraction fails, state that boundary. Check only what has been read; do not claim a full close reading.
 2. Read the [domain index](references/domains/_index.md) and select only relevant sheets by the actual problem, inputs, outputs, and objective. Use the title and abstract for an initial choice, then confirm against the body. For an unmatched domain, work from the paper itself. Sheets supply optional reading cues, never mandatory checklists or replacements for the paper's definitions.
-3. Before either mode, read the [evidence rules](references/evidence-rules.md). Locate important claims and corrections in the source; distinguish author claims, experimental support, and assistant inference.
+3. Before any mode, read the [evidence rules](references/evidence-rules.md). Locate important claims and corrections in the source; distinguish author claims, experimental support, and assistant inference.
 4. Before running PDF helpers, read `local-runtime.md` if present in this skill directory and use its verified interpreter. Otherwise select a Python that can import PyMuPDF. Do not ignore a configured isolated environment merely because the system default Python lacks the dependency.
 5. Resolve helper paths relative to this skill directory and read the paper from the supplied path. Follow the user's or project's storage rules for extracted text and rendered pages; do not scatter intermediate images in the current directory.
 
@@ -49,12 +50,18 @@ Read the [retelling workflow](references/retelling-mode.md) on entry. Use an alr
 
 The user explains first; then check against the source. If no retelling has been provided, give only the relevant task rather than its answer. When a follow-up is useful, focus on one key point; allow direct explanation or skipping. Switch to guided reading when the user requests sustained assistant-led explanation.
 
+## Full Analysis and Requested Presentation Aids
+
+Read the [full-analysis guidance](references/full-analysis-mode.md) on entering full analysis or preparing requested presentation aids. Deliver a coherent analysis and summary without per-section user answers, adapting the [summary schema](references/summary-template.md) to the paper and requested scope. Read substantive method and evidence beyond navigation excerpts, view important visuals used in conclusions, and disclose partial coverage or unresolved evidence. Do not generate a mastery record without actual retelling.
+
+Plain full analysis includes no presentation outline, slide plan, Q&A, speaking script, or talk-duration assumption. Add only aids requested by the prompt or explicit presentation context; honor exclusions. An outline request does not imply Q&A, and a Q&A request does not imply an outline. Reuse grounded analysis for later requests rather than restarting the paper. Presentation output stays in chat unless explicitly exported.
+
 ## Questions and Wrap-Up
 
 - Read the [question checklist](references/question-checklist.md) when auxiliary questions would help examine novelty, an experimental claim, or a limitation. Select relevant items; do not complete a checklist for every section.
 - For comparisons with another paper, state what source material is available for it. Do not assemble numbers or claims from memory.
-- Default to explanations and brief recaps in the current conversation. "Summarize" or "organize this" (including "总结一下" and "整理一下") requests a chat response, not a file. Write a file only after an explicit save/export request, following the requested scope, location, and length; clarify an unspecified location first. Touch an Obsidian vault only when explicitly asked to write there. Do not overwrite existing notes or other files.
-- For an explicitly requested detailed summary or export, consult the [summary template](references/summary-template.md) as needed and omit irrelevant fields. Export permission is not overwrite permission. Do not write back to external reference libraries by default.
+- Keep ordinary recaps brief and in chat. "Summarize" or "organize this" (including "总结一下" and "整理一下") does not escalate the mode or authorize a file; explicit full analysis receives the requested depth. Write a file only after an explicit save/export request, following the requested scope, location, and length; clarify an unspecified location first. Touch an Obsidian vault only when explicitly asked to write there. Do not overwrite existing notes or other files.
+- For full analysis, an explicitly requested detailed summary, or export, use the [summary template](references/summary-template.md) selectively. Export permission is not overwrite permission. Do not write back to external reference libraries by default.
 - Maintain reading state only in the current conversation. Do not write it to long-term memory without a request. Do not invent the user's research ideas or personal reflections.
 
 ## Evidence and Stop Conditions

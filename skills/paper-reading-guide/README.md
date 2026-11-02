@@ -1,27 +1,31 @@
-# paper-reading-guide: Interactive Paper Reading and Retelling
+# paper-reading-guide: Reading, Retelling, and Full Analysis
 
 Understand a single computing paper in areas such as deep learning, networking, and edge-cloud offloading. Concrete examples, prerequisites taught as needed, and timely diagrams connect the problem, method, and experiments, while source checks keep explanations grounded.
 
 Customized from [fuxiao13/paper-reading-guide](https://github.com/fuxiao13/paper-reading-guide) under the MIT license, retaining its domain references and two PDF helpers.
 
-The skill's instructions are in English. User-facing teaching follows the user's language and defaults to Chinese. Chinese requests such as "陪读模式" and "复述模式" remain supported.
+The skill's instructions are in English. User-facing explanations follow the user's language and default to Chinese. Chinese requests such as "陪读模式", "复述模式", "完整分析模式", and "拆论文" are supported.
 
 ## Features
 
 - **Flexible guided reading:** Follow the current question. Ask, jump, backtrack, or skip understanding checks. Build missing prerequisites in small pieces.
 - **Proactive teaching aids:** Explain concepts with concrete examples and work through equations when useful. Add a small teaching diagram when an algorithm, module relationship, or complex causal chain benefits from it. Prefer Mermaid, falling back to text arrows when rendering is unavailable; identify source locations and simplified conditions.
 - **Retelling feedback:** The user explains first; the assistant checks against the paper and identifies correct, mistaken, and unresolved points. Distinguish independent retelling, retelling after hints, and material not yet checked; listening or skipping is not evidence of mastery.
+- **Full analysis:** Receive a coherent paper-wide breakdown of the problem, background, method, key equations, evidence, limits, and summary without per-section answers. The assistant reads substantive body text and inspects important cited visuals, disclosing partial coverage and unreviewed details.
+- **Optional presentation support:** Request an outline, anticipated Q&A, or a presentation package. Plain full analysis adds none of these. Each component follows the prompt independently, reusing grounded analysis for follow-ups; a presentation request alone does not create a file or PPT.
 - **Source checks:** Locate important claims and corrections. Distinguish author claims, experimental support, teaching examples, and assistant inference, as well as information not yet found, currently unverifiable, or checked but not stated. Actually view rendered pages before interpreting plotted trends.
 - **Domain-aware reading:** Select relevant references for edge-cloud offloading, graph/network optimization, traffic learning, visual distillation, and text-image retrieval, alongside the existing control, audio-visual, acoustic-imaging, and general-DL sheets. Confirm the actual problem and mechanism in the paper; combine sheets when useful without turning them into a checklist.
 - **Saving only on request:** Summarize or organize in chat by default. Save or export only when explicitly requested, following the specified scope, location, and length without overwriting. Write to Obsidian only when explicitly requested. Keep reading state in the conversation rather than saving long-term memory without a request.
 
 ## Entry Points
 
-- `$paper-reading-guide Read this paper: <path or link>`: choose a mode first.
+- `$paper-reading-guide Read this paper: <path or link>`: if intent is ambiguous, choose guided reading, retelling, or full analysis.
 - `$paper-reading-guide Guided reading mode: <path or link>`: explain one concept or causal chain at a time, add background as needed, and allow jumping, backtracking, or skipping checks.
 - `$paper-reading-guide Retelling mode; I will explain first: <path or link>`: the user retells, then the assistant checks the source and follows up as needed.
+- `$paper-reading-guide 拆论文：<path or link>`: enter full analysis directly, producing analysis and summary without a slide outline, Q&A, or assumed talk duration.
+- After analysis, ask "给我汇报提纲" or "可能被问什么" for only that component, or "明天汇报，准备汇报材料" for a scoped presentation package. Stated audience, focus and duration take priority; only requested presentation support without a duration uses a stated roughly 10-minute organizational assumption.
 - A specific equation, algorithm, or experiment question with paper context: answer directly without requiring a mode choice or resetting progress.
-- Ask to switch to guided reading or retelling during the conversation; retain progress.
+- Ask to switch among the three modes during the conversation; retain verified context and progress without overstating source coverage.
 
 Once the paper is available, saying "guided reading mode" or "陪读模式" is enough. For a new paper, the first turn defaults to a concrete scenario explaining the problem, difficulty, and core idea. Continue in small pieces with prerequisites, examples, and diagrams as needed. Specific questions, selected scope, and existing progress take precedence; teaching preferences need not be repeated.
 
@@ -37,13 +41,26 @@ Switch to retelling mode, only for the method we just covered. I will explain fi
 
 The Chinese opening above requests guided reading; continue naturally in the language you prefer. There is no need to invoke the skill again on every turn. You may ask about a particular equation, algorithm, or experiment directly.
 
+For a paper-wide analysis followed by a separate presentation request:
+
+```text
+$paper-reading-guide 拆论文：<PDF path>
+
+Now give me a 5-minute presentation outline, without Q&A.
+
+What might the audience ask? Answer from the paper; mark unknowns.
+```
+
+"总结一下" or "整理一下" remains a scoped chat recap. Missing or excerpt-only sources yield a clearly partial analysis rather than a claim of full coverage. Save/export only on explicit request to a specified destination, without overwriting existing files.
+
 ## Files
 
 - `SKILL.md`: entry routing and shared rules.
 - `references/three-pass-reading.md`: flexible reading depths, prerequisites, and teaching guidance.
 - `references/retelling-mode.md`: retelling workflow.
+- `references/full-analysis-mode.md`: paper-wide analysis, completion boundaries, and conditional presentation support.
 - `references/evidence-rules.md`: evidence, unknown-information states, and visual checks.
-- `references/summary-template.md`: optional summary template.
+- `references/summary-template.md`: reusable analysis schema with independently optional outline and Q&A sections.
 - `references/domains/`: domain index, five specialist sheets, and the retained upstream domain sheets.
 - `scripts/`: PDF outline extraction and page rendering; optional dependency in `requirements.txt`.
 - `LICENSE`: upstream MIT license and attribution.
