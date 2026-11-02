@@ -28,7 +28,7 @@ Write explanations, questions, diagram labels, summaries, and exports in the use
 ## Shared Preparation
 
 1. Confirm the paper's title, version, and readable scope. If only an abstract or excerpt is available, or extraction fails, state that boundary. Check only what has been read; do not claim a full close reading.
-2. Read the [domain index](references/domains/_index.md) and select matching sheets from the title and abstract when useful. Analyze networking papers without a matching sheet from their own text. A sheet never overrides the paper's definitions.
+2. Read the [domain index](references/domains/_index.md) and select only relevant sheets by the actual problem, inputs, outputs, and objective. Use the title and abstract for an initial choice, then confirm against the body. For an unmatched domain, work from the paper itself. Sheets supply optional reading cues, never mandatory checklists or replacements for the paper's definitions.
 3. Before either mode, read the [evidence rules](references/evidence-rules.md). Locate important claims and corrections in the source; distinguish author claims, experimental support, and assistant inference.
 4. Before running PDF helpers, read `local-runtime.md` if present in this skill directory and use its verified interpreter. Otherwise select a Python that can import PyMuPDF. Do not ignore a configured isolated environment merely because the system default Python lacks the dependency.
 5. Resolve helper paths relative to this skill directory and read the paper from the supplied path. Follow the user's or project's storage rules for extracted text and rendered pages; do not scatter intermediate images in the current directory.
