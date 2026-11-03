@@ -12,6 +12,8 @@ Inspect original pages for key equations, figures, or tables used in conclusions
 
 Use selective small numerical examples or concise diagrams when they clarify a central relationship. Label invented values and teaching simplifications, source-locate relationships, and distinguish task, physical, and auxiliary graphs where relevant. Respect pure text and requested length; do not force an example for every equation or a diagram for every section.
 
+Select key original regions for the relevant method/evidence explanation using the shared [source-visual workflow](evidence-rules.md#original-paper-regions-in-the-conversation); place them beside the analysis instead of dumping every page. Reuse clear context or zoom into necessary details. Continue the coherent analysis without per-image understanding gates. These source crops do not trigger a presentation outline, Q&A, PPT, or file export; pure-text and unavailable-source/display limits still apply.
+
 ## Completion and Partial Sources
 
 Call the requested analysis complete only when its main problem, contribution, method, evidence, and limits are covered with source locations and the reviewed scope is disclosed. This practical gate does not require exhaustive proof or supplement auditing. For a lengthy source, prioritize the central argument and requested deliverable, and identify material not reviewed.

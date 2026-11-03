@@ -11,6 +11,8 @@ Check whether the user can explain the paper independently. Ground feedback in t
 
 ## Feedback per Turn
 
+Follow the shared [source-visual workflow](evidence-rules.md#original-paper-regions-in-the-conversation). Normally wait for the user's attempt before presenting a relevant original region for checking or correction. For explicitly requested picture-based retelling, show the source picture first with a neutral task and no model answer. If the user wants an unprompted/no-hint attempt, withhold answer-bearing figures, captions, results, and conclusions until afterward. When a neutral picture cannot be separated without misleading alteration, defer it or disclose the hints it contains. After answer cues, describe later retelling as prompted rather than independent. Respect pure text and display limitations.
+
 1. Check facts, causal links, assumptions, inputs and outputs, novelty, and connections to evidence against the text actually read. Do not count unrequested parts of the paper as omissions when the user chose a narrower scope.
 2. Give only the feedback that is useful:
    - **Correct:** Identify the specific point and its source location.

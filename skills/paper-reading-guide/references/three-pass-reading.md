@@ -20,7 +20,11 @@ When the user says "I don't understand" ("没懂"), change the wording, example,
 
 When useful, invite a retelling, a prediction of the next step, or an explanation of a choice. Honor requests to listen directly, skip, or continue under the entrypoint's optional-check rules.
 
-## Proactive Diagrams
+## Original Regions and Teaching Diagrams
+
+When a source image, table, equation, or original example helps the current explanation, proactively present a relevant crop near it using the evidence rules' [source-visual workflow](evidence-rules.md#original-paper-regions-in-the-conversation). Usually start with one useful region and explain what to look at; enlarge context or zoom as the question needs. Reuse a clear earlier region for an unchanged question. Keep source crops distinct from the teaching schematics below and honor pure text or unsupported-client fallback.
+
+### Proactive Diagrams
 
 - When an algorithm, module connection, data flow, or complex causal chain is clearer as a picture, proactively add a small diagram limited to the current question. Organize it around inputs, key steps, necessary branches, and outputs. Use prose or an example for simple concepts; do not force a diagram into every turn. Honor a text-only request.
 - Prefer a concise Mermaid flowchart in chat. If the environment cannot render it, use a text-and-arrow diagram with a short explanation. Follow the entrypoint's explicit-request boundary for saving files.

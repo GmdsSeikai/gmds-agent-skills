@@ -34,6 +34,8 @@ Write explanations, questions, diagram labels, summaries, and exports in the use
 4. Before running PDF helpers, read `local-runtime.md` if present in this skill directory and use its verified interpreter. Otherwise select a Python that can import PyMuPDF. Do not ignore a configured isolated environment merely because the system default Python lacks the dependency.
 5. Resolve helper paths relative to this skill directory and read the paper from the supplied path. Follow the user's or project's storage rules for extracted text and rendered pages; do not scatter intermediate images in the current directory.
 
+When explaining a relevant source figure, table, equation, or original example, follow the evidence rules' [source-visual workflow](references/evidence-rules.md#original-paper-regions-in-the-conversation): inspect and present an appropriate original region near the explanation when the client supports it. Honor pure text and retelling timing; distinguish generated files, agent viewing, sending, and verified user-visible display. Temporary reading images follow the task's file policy; they do not authorize note/report/PPT exports, library, Obsidian, or memory writes.
+
 ## Guided Reading
 
 On entering guided reading or adjusting its depth, read the [reading and teaching guidance](references/three-pass-reading.md). Usually cover one concept or a short causal chain at a time, adding prerequisites as needed. Allow jumping, backtracking, and skipping rather than defaulting to whole sections. Expand when the user requests a complete explanation.
@@ -60,7 +62,7 @@ Plain full analysis includes no presentation outline, slide plan, Q&A, speaking 
 
 - Read the [question checklist](references/question-checklist.md) when auxiliary questions would help examine novelty, an experimental claim, or a limitation. Select relevant items; do not complete a checklist for every section.
 - For comparisons with another paper, state what source material is available for it. Do not assemble numbers or claims from memory.
-- Keep ordinary recaps brief and in chat. "Summarize" or "organize this" (including "总结一下" and "整理一下") does not escalate the mode or authorize a file; explicit full analysis receives the requested depth. Write a file only after an explicit save/export request, following the requested scope, location, and length; clarify an unspecified location first. Touch an Obsidian vault only when explicitly asked to write there. Do not overwrite existing notes or other files.
+- Keep ordinary recaps brief and in chat. "Summarize" or "organize this" (including "总结一下" and "整理一下") does not escalate the mode or authorize an export; explicit full analysis receives the requested depth. Write notes, reports, or other formal exports only after an explicit save/export request, following the requested scope, location, and length; clarify an unspecified location first. Temporary reading images follow Shared Preparation. Touch an Obsidian vault only when explicitly asked to write there. Do not overwrite existing notes or other files.
 - For full analysis, an explicitly requested detailed summary, or export, use the [summary template](references/summary-template.md) selectively. Export permission is not overwrite permission. Do not write back to external reference libraries by default.
 - Maintain reading state only in the current conversation. Do not write it to long-term memory without a request. Do not invent the user's research ideas or personal reflections.
 

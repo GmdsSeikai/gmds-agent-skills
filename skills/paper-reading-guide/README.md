@@ -14,8 +14,10 @@ The skill's instructions are in English. User-facing explanations follow the use
 - **Full analysis:** Receive a coherent paper-wide breakdown of the problem, background, method, key equations, evidence, limits, and summary without per-section answers. The assistant reads substantive body text and inspects important cited visuals, disclosing partial coverage and unreviewed details.
 - **Optional presentation support:** Request an outline, anticipated Q&A, or a presentation package. Plain full analysis adds none of these. Each component follows the prompt independently, reusing grounded analysis for follow-ups; a presentation request alone does not create a file or PPT.
 - **Source checks:** Locate important claims and corrections. Distinguish author claims, experimental support, teaching examples, and assistant inference, as well as information not yet found, currently unverifiable, or checked but not stated. Actually view rendered pages before interpreting plotted trends.
+- **Original-paper regions:** When useful, present a source figure, table, key equation or original example near its explanation, labeled with page and source number. Preserve required axes, legends, headers, footnotes and captions; use context first and zoom when needed. Reuse clear earlier images, honor pure text, and keep original crops distinct from invented teaching examples. Retelling normally receives evidence after the user's attempt, or a neutral picture task when explicitly requested.
+- **Client-aware display:** Generation, agent viewing, sending and readable user display are separate checks. A client may show a thumbnail needing zoom, support only an openable link, or have unverified display behavior. Tool success alone is not user-visible acceptance; an unsupported channel receives a source-labeled image link and explanation.
 - **Domain-aware reading:** Select relevant references for edge-cloud offloading, graph/network optimization, traffic learning, visual distillation, and text-image retrieval, alongside the existing control, audio-visual, acoustic-imaging, and general-DL sheets. Confirm the actual problem and mechanism in the paper; combine sheets when useful without turning them into a checklist.
-- **Saving only on request:** Summarize or organize in chat by default. Save or export only when explicitly requested, following the specified scope, location, and length without overwriting. Write to Obsidian only when explicitly requested. Keep reading state in the conversation rather than saving long-term memory without a request.
+- **Saving only on request:** Summarize or organize in chat by default. Temporary reading images follow the user's/project's task-file policy; formal notes, reports and PPT exports require an explicit request with scope, location and length, without overwriting. Write to Obsidian only when explicitly requested. Keep reading state in the conversation rather than saving long-term memory without a request.
 
 ## Entry Points
 
@@ -77,8 +79,15 @@ Reading text already supplied in chat does not require Python. For local PDFs, i
 python -m pip install -r <skill-dir>/requirements.txt
 python <skill-dir>/scripts/extract_outline.py <paper-path>
 python <skill-dir>/scripts/render_page.py <paper-path> 2,4 --out <task-output-dir>
+python <skill-dir>/scripts/render_page.py <paper-path> 3 --clip 36,60,550,410 --dpi 200 --out <task-output-dir>
 ```
 
 Replace `python` with the selected interpreter's path. Quote paths containing spaces according to the shell; on Windows, `-X utf8` can avoid terminal encoding problems. Extraction aids navigation only: inspect original page images before judging equations or figures.
+
+`--clip` takes exactly one page and displayed-page coordinates in PDF points, starting at the visible top-left after rotation/CropBox, independent of DPI. Convert unrotated text/search rectangles with `page.rotation_matrix` before passing them; do not rotate displayed coordinates again. Inspect the full page first and preserve needed context. The coordinates above are only a command example, not a figure locator for an arbitrary paper.
+
+Whole-page rendering keeps its 150 DPI default and collision-free filename. Existing names now receive exclusive `_2`, `_3`, etc. suffixes instead of being overwritten; crop names include their coordinates. Invalid pages now fail preflight instead of being skipped, as do empty page lists, invalid/multi-page clips and nonpositive DPI. The script prints the absolute output path, page, region and DPI. It does not modify the PDF or automatically clean outputs; a later filesystem failure can leave earlier outputs or an incomplete write, so multi-page export is not atomic.
+
+For script checks with an interpreter providing PyMuPDF, run `python -m unittest discover -s <skill-dir>/tests -v`. Tests generate synthetic PDFs at runtime; they include rotation/CropBox pixel checks and output safety without bundling real papers.
 
 Optionally create `local-runtime.md` in the installed skill directory to record the machine's interpreter and invocation instructions. The entrypoint reads it before running PDF helpers; without it, select a Python that can import PyMuPDF. The repository's skill-local `.gitignore` excludes this machine-specific file from publication.
