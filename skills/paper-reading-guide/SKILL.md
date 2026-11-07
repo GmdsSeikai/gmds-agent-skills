@@ -34,11 +34,15 @@ Write explanations, questions, diagram labels, summaries, and exports in the use
 4. Before running PDF helpers, read `local-runtime.md` if present in this skill directory and use its verified interpreter. Otherwise select a Python that can import PyMuPDF. Do not ignore a configured isolated environment merely because the system default Python lacks the dependency.
 5. Resolve helper paths relative to this skill directory and read the paper from the supplied path. Follow the user's or project's storage rules for extracted text and rendered pages; do not scatter intermediate images in the current directory.
 
-When explaining a relevant source figure, table, equation, or original example, follow the evidence rules' [source-visual workflow](references/evidence-rules.md#original-paper-regions-in-the-conversation): inspect and present an appropriate original region near the explanation when the client supports it. Honor pure text and retelling timing; distinguish generated files, agent viewing, sending, and verified user-visible display. Temporary reading images follow the task's file policy; they do not authorize note/report/PPT exports, library, Obsidian, or memory writes.
+Follow the evidence rules' [source-visual workflow](references/evidence-rules.md#original-paper-regions-in-the-conversation) for the active mode, including pure-text requests, retelling timing, and display limitations. Distinguish generated files, agent viewing, sending, and verified user-visible display. Temporary reading images follow the task's file policy; they do not authorize note/report/PPT exports, library, Obsidian, or memory writes.
 
 ## Guided Reading
 
 On entering guided reading or adjusting its depth, read the [reading and teaching guidance](references/three-pass-reading.md). Usually cover one concept or a short causal chain at a time, adding prerequisites as needed. Allow jumping, backtracking, and skipping rather than defaulting to whole sections. Expand when the user requests a complete explanation.
+
+Show the original evidence being explained in the current reply: quote relevant prose directly, with translation and plain-language explanation, and show original visuals where needed. Follow [Show the Current Source](references/evidence-rules.md#guided-reading-show-the-current-source) for evidence types, repetition across turns, context, scope, and exceptions. Citations alone do not satisfy this requirement.
+
+When locating a figure feature or equation term helps understanding, add a few explanation-language callouts to the checked original crop. Read [teaching annotations](references/evidence-rules.md#teaching-annotations-on-original-visuals) for source preservation, clean-original access, display and no-hint boundaries; use the linked helper contract when producing one.
 
 For a new paper's first guided-reading turn, with no specific question or selected scope, use a concrete scenario to frame the problem, why it is difficult, and the core idea. Do not assume familiarity with the background or require the user to repeat teaching preferences. Explicit questions, selected scope, and existing same-paper progress take precedence.
 

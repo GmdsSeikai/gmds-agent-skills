@@ -22,7 +22,9 @@ When useful, invite a retelling, a prediction of the next step, or an explanatio
 
 ## Original Regions and Teaching Diagrams
 
-When a source image, table, equation, or original example helps the current explanation, proactively present a relevant crop near it using the evidence rules' [source-visual workflow](evidence-rules.md#original-paper-regions-in-the-conversation). Usually start with one useful region and explain what to look at; enlarge context or zoom as the question needs. Reuse a clear earlier region for an unchanged question. Keep source crops distinct from the teaching schematics below and honor pure text or unsupported-client fallback.
+Apply [Show the Current Source](evidence-rules.md#guided-reading-show-the-current-source) to each teaching step. Select the source region with the concept, then show it, point out the relevant detail, and explain it. Size the step so its necessary original evidence fits in the current reply; this also applies when returning to an earlier concept. The teaching schematics below supplement that evidence under the shared rules and exceptions.
+
+For a figure feature or equation term that is easier to locate visually, use focused [teaching annotations on the original](evidence-rules.md#teaching-annotations-on-original-visuals). Tie each short callout to the same number or wording in the explanation; preserve the paper's symbols and conditions. A simple visual can stay clean with a prose explanation.
 
 ### Proactive Diagrams
 
