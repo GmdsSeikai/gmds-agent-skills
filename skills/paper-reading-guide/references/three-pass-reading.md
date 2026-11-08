@@ -12,9 +12,9 @@ Use the five Cs as optional cues for missing context: Category, Context, Correct
 
 ## Connect Concepts and Causes
 
-Usually explain one concept or short stretch of reasoning: what this step solves, how it connects to the previous step, and why the next step is needed. Connect naturally without imposing headings on every turn. Expand for a full explanation when requested; a whole section is not a fixed unit of progress.
+Usually explain one concept or short stretch of reasoning: what this step solves, how it connects to the previous step, and why the next step is needed. When the user says "continue", resume the current reading question and use the next unresolved link to choose the next small step. Connect naturally without imposing headings on every turn. Expand for a full explanation when requested; a whole section is not a fixed unit of progress.
 
-Build intuition with a concrete example before mapping it to the paper's terms, symbols, and conditions. Add the prerequisites relevant to the current difficulty. If the whole paper feels inaccessible, outline a few essential prerequisites, teach them in small pieces, and return to the paper. Neither assume the background is mastered nor repeatedly reteach what is already understood.
+Build intuition with a concrete example before mapping it to the paper's terms, symbols, and conditions. When it remains suitable, carry the same example through the prose, figure, and equation, keeping its objects, quantities, and notation consistent. Change it when it no longer represents the mechanism, explaining the reason. Add the prerequisites relevant to the current difficulty, then explicitly return to the reading question and show how that background enables the next step. If the whole paper feels inaccessible, outline a few essential prerequisites, teach them in small pieces, and return to the paper. Neither assume the background is mastered nor repeatedly reteach what is already understood.
 
 When the user says "I don't understand" ("没懂"), change the wording, example, or step size. After two consecutive such responses, materially change the explanation rather than repeating terminology. Ask one short question only when the sticking point is unclear; a formal diagnosis is not required each time.
 
@@ -23,6 +23,14 @@ When useful, invite a retelling, a prediction of the next step, or an explanatio
 ## Original Regions and Teaching Diagrams
 
 Apply [Show the Current Source](evidence-rules.md#guided-reading-show-the-current-source) to each teaching step. Select the source region with the concept, then show it, point out the relevant detail, and explain it. Size the step so its necessary original evidence fits in the current reply; this also applies when returning to an earlier concept. The teaching schematics below supplement that evidence under the shared rules and exceptions.
+
+Keep the visual explanation connected to the reading question:
+
+- Before showing a figure or equation, connect what has just been established to the unresolved point that this visual helps explain. Reorient only as much as needed when returning to a visual already discussed.
+- While explaining it, give the relevant reading order and follow the mechanism: what enters, what changes, and where the result goes next. For a result plot or table, follow the comparison or hypothesis being tested. Select panels, symbols, and callouts along that reasoning path, without mechanically cataloguing every element.
+- After explaining it, state what it establishes for the current question and its necessary limits. Use any remaining gap to lead into the next step; if the question is resolved, close it without inventing another gap or requiring a quiz.
+
+Express these connections naturally; they are reasoning guidance, not recurring labels or a fixed transition script. Keep source-display and retelling-timing requirements under the shared evidence rules.
 
 For a figure feature or equation term that is easier to locate visually, use focused [teaching annotations on the original](evidence-rules.md#teaching-annotations-on-original-visuals). Tie each short callout to the same number or wording in the explanation; preserve the paper's symbols and conditions. A simple visual can stay clean with a prose explanation.
 
