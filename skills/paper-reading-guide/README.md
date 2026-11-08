@@ -1,79 +1,81 @@
-# paper-reading-guide: Reading, Retelling, and Full Analysis
+# paper-reading-guide：论文陪读、复述与完整分析
 
-Understand a single computing paper in areas such as deep learning, networking, and edge-cloud offloading. Concrete examples, prerequisites taught as needed, and timely diagrams connect the problem, method, and experiments, while source checks keep explanations grounded.
+**简体中文** | [English](README.en.md)
 
-Customized from [fuxiao13/paper-reading-guide](https://github.com/fuxiao13/paper-reading-guide) under the MIT license, retaining its domain references and two PDF helpers.
+帮助理解深度学习、网络、边云卸载等计算机领域的单篇论文。通过具体例子、按需补充的前置知识和及时的图解，串起论文的问题、方法与实验，并依据原文核对解释。
 
-The skill's instructions are in English. User-facing explanations follow the user's language and default to Chinese. Chinese requests such as "陪读模式", "复述模式", "完整分析模式", and "拆论文" are supported.
+本技能基于 [fuxiao13/paper-reading-guide](https://github.com/fuxiao13/paper-reading-guide) 定制，遵循 MIT 许可证，保留了上游的领域参考资料和两个 PDF 辅助工具。
 
-## Features
+技能指令使用英文，对用户的解释遵循用户语言，默认使用中文。支持“陪读模式”“复述模式”“完整分析模式”“拆论文”等中文请求。
 
-- **Flexible guided reading:** Follow the current question. Ask, jump, backtrack, or skip understanding checks. Build missing prerequisites in small pieces.
-- **Proactive teaching aids:** Explain concepts with concrete examples and work through equations when useful. Add a small teaching diagram when an algorithm, module relationship, or complex causal chain benefits from it. Prefer Mermaid, falling back to text arrows when rendering is unavailable; identify source locations and simplified conditions.
-- **Retelling feedback:** The user explains first; the assistant checks against the paper and identifies correct, mistaken, and unresolved points. Distinguish independent retelling, retelling after hints, and material not yet checked; listening or skipping is not evidence of mastery.
-- **Full analysis:** Receive a coherent paper-wide breakdown of the problem, background, method, key equations, evidence, limits, and summary without per-section answers. The assistant reads substantive body text and inspects important cited visuals, disclosing partial coverage and unreviewed details.
-- **Optional presentation support:** Request an outline, anticipated Q&A, or a presentation package. Plain full analysis adds none of these. Each component follows the prompt independently, reusing grounded analysis for follow-ups; a presentation request alone does not create a file or PPT.
-- **Source checks:** Locate important claims and corrections. Distinguish author claims, experimental support, teaching examples, and assistant inference, as well as information not yet found, currently unverifiable, or checked but not stated. Actually view rendered pages before interpreting plotted trends.
-- **Original evidence in chat:** Guided reading presents relevant prose as an original-language excerpt, translation and plain-language explanation, without a prose screenshot by default. Figures, tables, equations and layout-dependent algorithms retain original crops. Repeat the relevant evidence across turns, reusing verified image files when suitable; preserve necessary context and distinguish sources from teaching examples. See the [evidence rules](references/evidence-rules.md#guided-reading-show-the-current-source) for scope and display fallback. Honor pure text. Retelling normally receives evidence after the user's attempt, or a neutral picture task when explicitly requested.
-- **Client-aware display:** Generation, agent viewing, sending and readable user display are separate checks. A client may show a thumbnail needing zoom, support only an openable link, or have unverified display behavior. Tool success alone is not user-visible acceptance; an unsupported channel receives a source-labeled image link and explanation.
-- **Domain-aware reading:** Select relevant references for edge-cloud offloading, graph/network optimization, traffic learning, visual distillation, and text-image retrieval, alongside the existing control, audio-visual, acoustic-imaging, and general-DL sheets. Confirm the actual problem and mechanism in the paper; combine sheets when useful without turning them into a checklist.
-- **Saving only on request:** Summarize or organize in chat by default. Temporary reading images follow the user's/project's task-file policy; formal notes, reports and PPT exports require an explicit request with scope, location and length, without overwriting. Write to Obsidian only when explicitly requested. Keep reading state in the conversation rather than saving long-term memory without a request.
+## 功能
 
-## Entry Points
+- **灵活陪读**：围绕当前问题推进，可随时提问、跳读、回看或跳过理解检查；缺少的前置知识分小步补充。
+- **主动教学辅助**：用具体例子解释概念，必要时逐步推导公式。算法、模块关系或复杂因果链适合图解时，主动补充简图；优先使用 Mermaid，无法渲染时改用文字箭头，并标明原文位置和简化条件。
+- **复述反馈**：用户先讲，助手再对照论文，区分正确、错误和未解决的部分。明确区分独立复述、提示后复述与尚未检查；听过或跳过不代表已经掌握。
+- **完整分析**：连贯拆解整篇论文的问题、背景、方法、关键公式、证据、局限与总结，不要求用户逐节作答。助手会阅读实质性正文并查看结论所引用的重要图表，同时说明覆盖不完整或尚未核查的部分。
+- **按需准备汇报**：可单独请求提纲、预期问答或一套汇报材料。普通完整分析不附带这些内容，各项按请求独立提供；后续请求复用已核实的分析。仅要求准备汇报，不会自动创建文件或 PPT。
+- **原文核验**：为重要结论和纠正提供出处，区分作者主张、实验支持、教学例子与助手推断，也区分尚未找到、目前无法验证，以及已查阅但原文未说明的信息。解读图中趋势前，实际查看渲染后的页面。
+- **在对话中展示原始证据**：陪读正文采用“原文摘录 → 中文翻译 → 通俗解释”，默认不截取正文图片。图、表、公式和依赖版式的算法保留原始裁图；跨轮次解释时重新展示相关证据，可复用已核验的图片。保留必要上下文，区分原文与教学例子。适用范围与展示降级方式见[证据规则](references/evidence-rules.md#guided-reading-show-the-current-source)。尊重纯文本要求。复述通常在用户讲完后展示证据；只有明确要求时，才先提供不含提示的看图任务。
+- **适配客户端展示能力**：图片生成、助手查看、发送成功和用户可读是不同的检查环节。客户端可能只显示需要放大的缩略图、仅支持可打开的链接，或尚未验证展示效果。工具调用成功不代表用户已经能看清；展示通道不支持时，提供标注来源的图片链接与说明。
+- **按领域辅助阅读**：按需选择边云卸载、图与网络优化、流量学习、视觉蒸馏、文本—图像检索等资料，以及保留的控制、视听、声学成像与通用深度学习资料。先确认论文的实际问题和机制，必要时组合资料，不机械套用检查表。
+- **仅在请求时保存**：默认在对话中总结与整理。临时阅读图片遵循用户或项目的任务文件规则；正式笔记、报告和 PPT 导出需要明确请求，并确定范围、位置与篇幅，不覆盖已有文件。只有明确要求时才写入 Obsidian。阅读进度保留在当前对话中，未经请求不写入长期记忆。
 
-- `$paper-reading-guide Read this paper: <path or link>`: if intent is ambiguous, choose guided reading, retelling, or full analysis.
-- `$paper-reading-guide Guided reading mode: <path or link>`: explain one concept or causal chain at a time, add background as needed, and allow jumping, backtracking, or skipping checks.
-- `$paper-reading-guide Retelling mode; I will explain first: <path or link>`: the user retells, then the assistant checks the source and follows up as needed.
-- `$paper-reading-guide 拆论文：<path or link>`: enter full analysis directly, producing analysis and summary without a slide outline, Q&A, or assumed talk duration.
-- After analysis, ask "给我汇报提纲" or "可能被问什么" for only that component, or "明天汇报，准备汇报材料" for a scoped presentation package. Stated audience, focus and duration take priority; only requested presentation support without a duration uses a stated roughly 10-minute organizational assumption.
-- A specific equation, algorithm, or experiment question with paper context: answer directly without requiring a mode choice or resetting progress.
-- Ask to switch among the three modes during the conversation; retain verified context and progress without overstating source coverage.
+## 使用入口
 
-Once the paper is available, saying "guided reading mode" or "陪读模式" is enough. For a new paper, the first turn defaults to a concrete scenario explaining the problem, difficulty, and core idea. Continue in small pieces with prerequisites, examples, and diagrams as needed. Specific questions, selected scope, and existing progress take precedence; teaching preferences need not be repeated.
+- `$paper-reading-guide 读这篇论文：<路径或链接>`：意图不明确时，选择陪读、复述或完整分析。
+- `$paper-reading-guide 陪读模式：<路径或链接>`：每次讲清一个概念或一条因果链，按需补充背景，允许跳读、回看或跳过检查。
+- `$paper-reading-guide 复述模式，我先讲：<路径或链接>`：用户先复述，助手再核对原文，按需追问。
+- `$paper-reading-guide 拆论文：<路径或链接>`：直接进入完整分析，输出分析与总结，不附带幻灯片提纲、问答或预设汇报时长。
+- 分析后可说“给我汇报提纲”或“可能被问什么”，仅获取对应内容；也可说“明天汇报，准备汇报材料”，获取限定范围的汇报材料。用户指定的听众、重点与时长优先；只有请求汇报支持却未给出时长时，才会明确说明按约 10 分钟组织内容的假设。
+- 已有论文上下文时，直接问具体公式、算法或实验问题，无须先选模式，也不重置进度。
+- 对话中可随时切换三种模式，保留已核实的上下文与进度，不夸大原文覆盖范围。
 
-## Conversation Example
+提供论文后，只说“陪读模式”即可。新论文默认先用一个具体场景说明问题、难点与核心思路，再分小步推进，按需补充前置知识、例子与图解。具体问题、指定范围和已有进度优先，无须反复说明教学偏好。
 
-```text
-$paper-reading-guide 陪读模式，读这篇论文：<PDF path>
-
-I still do not understand this part. Use another example and diagram the module relationships.
-
-Switch to retelling mode, only for the method we just covered. I will explain first.
-```
-
-The Chinese opening above requests guided reading; continue naturally in the language you prefer. There is no need to invoke the skill again on every turn. You may ask about a particular equation, algorithm, or experiment directly.
-
-For a paper-wide analysis followed by a separate presentation request:
+## 对话示例
 
 ```text
-$paper-reading-guide 拆论文：<PDF path>
+$paper-reading-guide 陪读模式，读这篇论文：<PDF 路径>
 
-Now give me a 5-minute presentation outline, without Q&A.
+这部分我还是没懂，换个例子，再画一下模块之间的关系。
 
-What might the audience ask? Answer from the paper; mark unknowns.
+切换到复述模式，只检查刚才讲的方法，我先讲。
 ```
 
-"总结一下" or "整理一下" remains a scoped chat recap. Missing or excerpt-only sources yield a clearly partial analysis rather than a claim of full coverage. Save/export only on explicit request to a specified destination, without overwriting existing files.
+后续自然对话即可，无须每轮重新调用技能；也可以直接询问某个公式、算法或实验。
 
-## Files
+先做整篇分析，再单独请求汇报支持：
 
-- `SKILL.md`: entry routing and shared rules.
-- `references/three-pass-reading.md`: flexible reading depths, prerequisites, and teaching guidance.
-- `references/retelling-mode.md`: retelling workflow.
-- `references/full-analysis-mode.md`: paper-wide analysis, completion boundaries, and conditional presentation support.
-- `references/evidence-rules.md`: evidence, unknown-information states, and visual checks.
-- `references/summary-template.md`: reusable analysis schema with independently optional outline and Q&A sections.
-- `references/domains/`: domain index, five specialist sheets, and the retained upstream domain sheets.
-- `scripts/`: PDF outline extraction and page rendering; optional dependency in `requirements.txt`.
-- `LICENSE`: upstream MIT license and attribution.
+```text
+$paper-reading-guide 拆论文：<PDF 路径>
 
-This directory contains the customized reading workflow, domain references, and PDF tools. Preserve its interaction and write boundaries when reviewing upstream updates.
+给我一个 5 分钟的汇报提纲，不要问答。
 
-Domain selection follows inputs, outputs, and objectives rather than keywords alone. A DNN inference-offloading paper may concern placement rather than training; text-image retrieval does not imply audio. Unmatched topics use the original paper and any relevant general-DL background. For optimization papers, explanations connect the scenario, model, algorithm, guarantee conditions, and experiments as needed, while retaining restricted assumptions and distinguishing solution quality from solver runtime.
+听众可能问什么？根据论文回答，不知道的地方标出来。
+```
 
-## PDF Helper Environment
+“总结一下”或“整理一下”仍然只是在对话中按当前范围回顾。缺少原文或仅有节选时，会明确给出局部分析，不声称已覆盖全文。只有明确请求保存或导出并指定目标位置后，才会写入文件，且不覆盖已有文件。
 
-Reading text already supplied in chat does not require Python. For local PDFs, install `requirements.txt` in an isolated Python environment and use an interpreter that can import PyMuPDF. Resolve helper paths relative to the skill directory.
+## 文件结构
+
+- `SKILL.md`：入口分流与通用规则。
+- `references/three-pass-reading.md`：灵活阅读深度、前置知识与教学指导。
+- `references/retelling-mode.md`：复述流程。
+- `references/full-analysis-mode.md`：整篇分析、完成边界与按需汇报支持。
+- `references/evidence-rules.md`：证据、未知信息状态与视觉检查。
+- `references/summary-template.md`：可复用的分析结构，提纲和问答各自独立可选。
+- `references/domains/`：领域索引、五份专项资料及保留的上游领域资料。
+- `scripts/`：PDF 大纲提取与页面渲染等工具；可选依赖见 `requirements.txt`。
+- `LICENSE`：上游 MIT 许可证与署名。
+
+本目录包含定制的阅读流程、领域资料与 PDF 工具。评估上游更新时，应保留这里的交互规则和写入边界。
+
+领域选择依据输入、输出与目标，不只看关键词。DNN 推理卸载论文可能研究部署位置而非训练；文本—图像检索也不等于音频研究。未匹配的主题以论文原文和相关通用深度学习背景为准。对于优化类论文，按需串起场景、模型、算法、保证成立的条件与实验，保留受限假设，并区分解的质量与求解耗时。
+
+## PDF 辅助工具环境
+
+阅读已在对话中提供的文本不需要 Python。处理本地 PDF 时，在隔离的 Python 环境中安装 `requirements.txt`，并使用能够导入 PyMuPDF 的解释器。辅助脚本路径相对于技能目录解析。
 
 ```text
 python -m pip install -r <skill-dir>/requirements.txt
@@ -82,24 +84,30 @@ python <skill-dir>/scripts/render_page.py <paper-path> 2,4 --out <task-output-di
 python <skill-dir>/scripts/render_page.py <paper-path> 3 --clip 36,60,550,410 --dpi 200 --out <task-output-dir>
 ```
 
-Replace `python` with the selected interpreter's path. Quote paths containing spaces according to the shell; on Windows, `-X utf8` can avoid terminal encoding problems. Extraction aids navigation only: inspect original page images before judging equations or figures.
+其中 `<skill-dir>` 是技能目录，`<paper-path>` 是论文路径，`<task-output-dir>` 是本次任务的输出目录。将 `python` 替换为所选解释器的路径；含空格的路径需按所用 shell 的规则加引号。Windows 下可使用 `-X utf8` 避免终端编码问题。文本提取只帮助定位；判断公式或图表前，仍需查看原始页面图像。
 
-`--clip` takes exactly one page and displayed-page coordinates in PDF points, starting at the visible top-left after rotation/CropBox, independent of DPI. Convert unrotated text/search rectangles with `page.rotation_matrix` before passing them; do not rotate displayed coordinates again. Inspect the full page first and preserve needed context. The coordinates above are only a command example, not a figure locator for an arbitrary paper.
+`--clip` 仅接受单页，使用旋转和 CropBox 生效后、从可见页面左上角起算的 PDF 点坐标，与 DPI 无关。未旋转的文本或搜索矩形需先通过 `page.rotation_matrix` 转换；已按显示页面取得的坐标不要重复旋转。先查看整页，并保留必要上下文。上面的坐标只是命令示例，不能用来定位任意论文中的图。
 
-Whole-page rendering keeps its 150 DPI default and collision-free filename. Existing names now receive exclusive `_2`, `_3`, etc. suffixes instead of being overwritten; crop names include their coordinates. Invalid pages now fail preflight instead of being skipped, as do empty page lists, invalid/multi-page clips and nonpositive DPI. The script prints the absolute output path, page, region and DPI. It does not modify the PDF or automatically clean outputs; a later filesystem failure can leave earlier outputs or an incomplete write, so multi-page export is not atomic.
+整页渲染默认使用 150 DPI，输出文件名避免冲突。遇到同名文件时，以独占创建方式添加 `_2`、`_3` 等后缀，不覆盖已有文件；裁图文件名包含裁剪坐标。无效页码、空页码列表、无效或涉及多页的裁剪、非正数 DPI 均会在输出前检查失败。脚本会打印输出的绝对路径、页码、区域与 DPI。它不修改 PDF，也不自动清理输出；后续文件系统写入失败可能留下先前的输出或未写完的文件，因此多页导出不具备原子性。
 
-For script checks with an interpreter providing PyMuPDF, run `python -m unittest discover -s <skill-dir>/tests -v`. Tests generate synthetic PDFs at runtime; they include rotation/CropBox pixel checks and output safety without bundling real papers.
+使用已安装 PyMuPDF 的解释器检查脚本：
 
-Optionally create `local-runtime.md` in the installed skill directory to record the machine's interpreter and invocation instructions. The entrypoint reads it before running PDF helpers; without it, select a Python that can import PyMuPDF. The repository's skill-local `.gitignore` excludes this machine-specific file from publication.
+```text
+python -m unittest discover -s <skill-dir>/tests -v
+```
 
-## Teaching Annotations on Original Visuals
+测试在运行时生成合成 PDF，覆盖旋转、CropBox 的像素检查与输出安全，不随仓库分发真实论文。
 
-When locating a figure feature or equation term helps, guided reading adds short callouts in the explanation language (Chinese by default) to the checked original crop. Labels match the prose and preserve source symbols. The reply identifies the teaching annotation and source location, provides a clean-original link, and shows both inline when fidelity or readability requires it. Pure-text requests and retelling's no-hint timing still apply; each later explanation re-embeds its relevant source visual.
+可在已安装的技能目录中创建 `local-runtime.md`，记录本机解释器与调用方式。入口会在运行 PDF 工具前读取此文件；没有该文件时，选择可导入 PyMuPDF 的 Python。技能目录的 `.gitignore` 已排除这一机器专属文件，避免发布到仓库。
 
-Read the [source annotation rules](references/evidence-rules.md#teaching-annotations-on-original-visuals) and [helper contract](references/visual-annotations.md) before producing one:
+## 在原图上添加教学标注
+
+定位图中细节或公式项有助于理解时，陪读会在已核验的原始裁图上添加简短标注，使用与讲解相同的语言，默认中文。标注与正文对应，保留原文符号。回复会说明这是教学标注并给出原文位置，同时提供干净原图的链接；为保证保真或可读性，必要时将两张图都内嵌展示。仍需尊重纯文本要求与复述前不提示的时机规则；后续每次解释时，重新嵌入当前相关的原始图像。
+
+生成标注前，阅读[原图标注规则](references/evidence-rules.md#teaching-annotations-on-original-visuals)与[辅助工具约定](references/visual-annotations.md)：
 
 ```text
 python <skill-dir>/scripts/annotate_visual.py <checked-crop.png> <callouts.json> --out <task-output-dir> --padding 200 --font-size 18
 ```
 
-The helper uses existing PyMuPDF with its bundled CJK font (or a caller-supplied font), original pixels and vector labels/leaders. Coordinates use PNG pixels, labels stay in added margins, and glyph/geometry failures stop before output. It preserves a byte-identical clean copy and creates separate collision-safe annotated output. Inspect the crop, targets, line paths and text before sending; helper success does not establish scientific fidelity, user-visible display or comprehension. Without a usable tool/font, continue with the clean original and prose. Synthetic CLI tests cover preservation, placement, glyph failures and invalid input; a narrow wording check pins source/claim boundaries without proving model compliance.
+该工具使用已有的 PyMuPDF 及其内置 CJK 字体，也可指定字体；以原始像素和矢量文字、引导线生成标注。坐标使用 PNG 像素，文字放在新增边距中，字形或几何校验失败时会在输出前停止。工具保留一份字节完全一致的干净原图副本，并另存避免文件名冲突的标注图。发送前检查裁图、标注目标、连线路径与文字；工具成功不代表科学内容准确、用户能看清或已经理解。没有可用工具或字体时，继续使用干净原图和文字解释。合成数据的命令行测试覆盖原图保留、标注位置、字形失败与无效输入；另有一项针对性文案检查，用于约束来源与结论的边界，但不证明模型实际遵守了规则。
