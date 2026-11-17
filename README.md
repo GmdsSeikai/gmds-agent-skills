@@ -9,6 +9,7 @@
 | 技能 | 用途 |
 | --- | --- |
 | [agent-handoff](skills/agent-handoff/SKILL.md) | 通过本地任务文件，在负责决策与评审的智能体和负责执行与修复的智能体之间手动交接 Git 仓库任务。默认由 Codex 与通过 Claude Code CLI 运行的 Mimo 协作。 |
+| [chinese-expression](skills/chinese-expression/SKILL.md) | 统一中文聊天、写作和 PPT 内容表达：减少重复免责与空泛自贬，保留事实、真实条件、作者语气和工程检查要求。 |
 | [paper-reading-guide](skills/paper-reading-guide/README.md) | 通过灵活陪读、复述反馈或完整分析，理解单篇计算机领域论文；结合具体例子与主动图解，依据原文核对结论，仅在明确要求时导出笔记。 |
 
 ## 安装
@@ -19,6 +20,10 @@
 - Claude Code：`~/.claude/skills/`。
 
 ## 使用
+
+### chinese-expression：中文聊天、写作与 PPT 内容
+
+中文交流和成稿任务可自动使用，也可在 Codex 中调用 `$chinese-expression`，在 Claude Code 中调用 `/chinese-expression`。技能自包含，按聊天、写作或 PPT 内容读取配套规则；制作工具与工程验证继续沿用原流程。来源与许可见[来源说明](skills/chinese-expression/NOTICE.md)。
 
 ### agent-handoff：手动交接任务
 
