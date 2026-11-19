@@ -1,0 +1,38 @@
+\section{Experimental Results}
+\label{sec:results}
+
+Dean and Barroso describe how latency variability can affect the
+responsiveness of interactive services~\cite{dean2013tail}.
+To show the variation behind each mean, we plot the individual observations
+in Fig.~\ref{fig:latency}. The observations are synthetic per-image latency
+records for three illustrative preprocessing groups.
+
+Table~\ref{tab:latency} summarizes the fixture. The sequential and batched
+means were \SequentialMean{} and \BatchedMean{} ms, respectively, a
+sequential-minus-batched difference of \SequentialMinusBatched{} ms.
+The reference group averaged \ReferenceMean{} ms.
+These comparisons describe the supplied samples.
+
+\begin{table}[!ht]
+  \centering
+  \caption{Sample counts and arithmetic mean latencies.}
+  \label{tab:latency}
+  \begin{tabular}{lrr}
+    \toprule
+    Group & Samples & Mean (ms) \\
+    \midrule
+    Sequential & \SequentialCount & \SequentialMean \\
+    Batched & \BatchedCount & \BatchedMean \\
+    Reference & \ReferenceCount & \ReferenceMean \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\begin{figure}[!ht]
+  \centering
+  \includegraphics[width=\columnwidth]{build/latency.pdf}
+  \caption{Synthetic latency per image. Bars show arithmetic means
+    (\SequentialMean{}, \BatchedMean{}, and \ReferenceMean{} ms, top to
+    bottom). Dots show the individual samples.}
+  \label{fig:latency}
+\end{figure}

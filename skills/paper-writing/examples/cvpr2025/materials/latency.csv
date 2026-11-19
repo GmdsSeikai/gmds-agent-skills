@@ -1,0 +1,16 @@
+sample_id,group,latency_ms
+S01,sequential,24
+S02,sequential,32
+S03,sequential,40
+S04,sequential,48
+S05,sequential,56
+B01,batched,18
+B02,batched,24
+B03,batched,28
+B04,batched,34
+B05,batched,46
+R01,reference,16
+R02,reference,22
+R03,reference,28
+R04,reference,36
+R05,reference,48

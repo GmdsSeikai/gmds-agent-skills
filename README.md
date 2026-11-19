@@ -11,6 +11,7 @@
 | [agent-handoff](skills/agent-handoff/SKILL.md) | 通过本地任务文件，在负责决策与评审的智能体和负责执行与修复的智能体之间手动交接 Git 仓库任务。默认由 Codex 与通过 Claude Code CLI 运行的 Mimo 协作。 |
 | [chinese-expression](skills/chinese-expression/SKILL.md) | 统一中文聊天、写作和 PPT 内容表达：减少重复免责与空泛自贬，保留事实、真实条件、作者语气和工程检查要求。 |
 | [paper-reading-guide](skills/paper-reading-guide/README.md) | 通过灵活陪读、复述反馈或完整分析，理解单篇计算机领域论文；结合具体例子与主动图解，依据原文核对结论，仅在明确要求时导出笔记。 |
+| [paper-writing](skills/paper-writing/README.md) | 根据实验材料和参考文献撰写、核对或修订 LaTeX 实验结果，并重建受影响的图表和 PDF。 |
 
 ## 安装
 
@@ -59,3 +60,7 @@ $paper-reading-guide 拆论文：<PDF 路径或链接>
 ```
 
 更多用法与可选的 PDF 工具环境配置，见[中文使用说明](skills/paper-reading-guide/README.md)。
+
+### paper-writing：撰写与核对实验结果
+
+调用 `$paper-writing` 并提供采用的 LaTeX 稿、实验记录和参考文献。用法与编译命令见 [CVPR 2025 合成示例](skills/paper-writing/examples/cvpr2025/HANDOFF.md)。

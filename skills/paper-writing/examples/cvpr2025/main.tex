@@ -1,0 +1,28 @@
+% Layout and bibliography setup follow the CVPR 2025 author kit.
+\documentclass[10pt,twocolumn,letterpaper]{article}
+\usepackage{cvpr}
+
+\definecolor{cvprblue}{rgb}{0.21,0.49,0.74}
+\usepackage[breaklinks,colorlinks,allcolors=cvprblue]{hyperref}
+
+\input{build/metrics}
+\title{Reporting Synthetic Image Preprocessing Latency}
+\author{Paper Writing Skills}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We illustrate how to report preprocessing latency from individual sample
+records. In the synthetic fixture, the sequential and batched groups
+average \SequentialMean{} and \BatchedMean{} ms per image, respectively.
+\end{abstract}
+
+\input{results}
+
+{\small
+\bibliographystyle{ieeenat_fullname}
+\bibliography{references}
+}
+
+\end{document}
